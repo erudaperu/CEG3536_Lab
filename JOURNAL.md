@@ -1,7 +1,7 @@
 # Journal - CEG3536 Lab 3
 
 Équipe reprise du projet Lab 2 : Eren Arikan (300357356), Antony Zuze (300221295), section A02.
-Dépôt d'origine : https://github.com/erudaperu/CEG3536_Lab. Travail Lab 3 conservé localement ; aucune publication distante.
+Dépôt d'origine : https://github.com/erudaperu/CEG3536_Lab. Lab 3 publié le 10 novembre 2026 : https://github.com/erudaperu/CEG3536_Lab/tree/lab3.
 
 ## 10 novembre 2026 - préparation logicielle assistée
 
