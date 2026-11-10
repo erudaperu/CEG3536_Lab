@@ -74,12 +74,15 @@ int main(void)
     acq_temp = acq_instance(1u);
     /* potentiomètre : % = mv x 100 / 3300 ; version 2 : zone morte, hystérésis */
     acq_init(acq_pot, &tampon_adc[0], ADC_N_VOIES, ADC_N_MOY, 100, (int32_t)ADC_VREF_MV, 0);
+    acq_config_filtre(acq_pot, CONSIGNE_HYSTERESIS, POT_ZONE_MORTE_PCT, 0, 100);
     /* température (dixièmes de °C) : t10 = mv x (-10000) / 10900 + C
      * avec C = TEMP_C10_REF + TEMP_MV_REF x 10000 / 10900 (relation linéaire
      * étalonnée, E6) — À VÉRIFIER avec les constantes de lab3.h relevées.    */
     acq_init(acq_temp, &tampon_adc[1], ADC_N_VOIES, ADC_N_TEMP,
              -10000, -TEMP_PENTE_UV_PAR_C,
              TEMP_C10_REF + (TEMP_MV_REF * 10000) / (-TEMP_PENTE_UV_PAR_C));
+    acq_config_circulaire(acq_pot, ADC_N_TAMPON, adc_dma_position);
+    acq_config_circulaire(acq_temp, ADC_N_TAMPON, adc_dma_position);
     telem_init(TELEM_BAUDS);
     fsm_init();
     telem_entete();
