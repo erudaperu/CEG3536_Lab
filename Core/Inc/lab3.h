@@ -25,8 +25,8 @@ uint32_t enc_fronts_vers_rpm_q16(uint32_t fronts);
 #define CLIGNOTEMENT_DEMI_MS 250u
 #define TELEM_PERIODE_MS    200u    /* télémétrie à 5 Hz (E10)                  */
 #define TELEM_BAUDS         115200u
-#define ADC_N_TEMP          16u /* V2 : moyenne temperature renforcee */
-#define ADC_N_TAMPON        16u /* capacite physique par voie */
+#define ADC_N_TEMP          64u /* V2 : moyenne temperature renforcee */
+#define ADC_N_TAMPON        64u /* capacite physique par voie */
 #define ADC_N_VOIES         2u      /* IN1 = potentiomètre, IN2 = température   */
 #define ADC_N_MOY           16u     /* échantillons par voie dans le tampon DMA */
 #define ADC_VREF_MV         3300u
