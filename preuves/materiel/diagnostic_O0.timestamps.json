@@ -1,0 +1,834 @@
+[
+  {
+    "elapsed": 6.5e-05,
+    "ascii": "\n\ufffd\ufffd\nK\ufffd\ufffd*\ufffd\ufffd\b\ufffd\ufffd)\u0005\ufffd\u0005\ufffd\n\ufffd\ufffd\ufffd\ufffdJ\b\ufffd\n\ufffd\n\ufffd\ufffd*\n\ufffd\u0004\u0002\n\ufffd\n\ufffdJ1\u0004\ufffd\ufffd\ufffd\ufffd\n\ufffd*\ufffd\ufffd\u0003\"\u0000\u0002\ufffd\u001a\n\ufffdJ\ufffd\n\ufffd5)\bk"
+  },
+  {
+    "elapsed": 0.020029,
+    "ascii": "T,9047,0,0,0"
+  },
+  {
+    "elapsed": 0.021001,
+    "ascii": ",0,247,0,82"
+  },
+  {
+    "elapsed": 0.022,
+    "ascii": ",0\r\n"
+  },
+  {
+    "elapsed": 0.220118,
+    "ascii": "T,9248,0,"
+  },
+  {
+    "elapsed": 0.221003,
+    "ascii": "0,0,0,246,0"
+  },
+  {
+    "elapsed": 0.221992,
+    "ascii": ",83,0\r\n"
+  },
+  {
+    "elapsed": 0.420072,
+    "ascii": "T,944"
+  },
+  {
+    "elapsed": 0.420999,
+    "ascii": "9,0,0,0,0,24"
+  },
+  {
+    "elapsed": 0.422008,
+    "ascii": "7,0,85,0\r\n"
+  },
+  {
+    "elapsed": 0.620055,
+    "ascii": "T,"
+  },
+  {
+    "elapsed": 0.621002,
+    "ascii": "9650,0,0,0,"
+  },
+  {
+    "elapsed": 0.622007,
+    "ascii": "0,246,0,87,0"
+  },
+  {
+    "elapsed": 0.622999,
+    "ascii": "\r\n"
+  },
+  {
+    "elapsed": 0.821085,
+    "ascii": "T,9851,0,0"
+  },
+  {
+    "elapsed": 0.822011,
+    "ascii": ",0,0,247,0,"
+  },
+  {
+    "elapsed": 0.823006,
+    "ascii": "89,0\r\n"
+  },
+  {
+    "elapsed": 1.021272,
+    "ascii": "T,100"
+  },
+  {
+    "elapsed": 1.022087,
+    "ascii": "52,0,0,0,0,"
+  },
+  {
+    "elapsed": 1.023087,
+    "ascii": "246,0,91,0\r\n"
+  },
+  {
+    "elapsed": 1.221062,
+    "ascii": "T,"
+  },
+  {
+    "elapsed": 1.221995,
+    "ascii": "10253,0,0,0,"
+  },
+  {
+    "elapsed": 1.222988,
+    "ascii": "0,246,0,92,"
+  },
+  {
+    "elapsed": 1.223996,
+    "ascii": "0\r\n"
+  },
+  {
+    "elapsed": 1.422801,
+    "ascii": "T,10454,0,0"
+  },
+  {
+    "elapsed": 1.423172,
+    "ascii": ",0,0,248,0,"
+  },
+  {
+    "elapsed": 1.42462,
+    "ascii": "94,0\r\n"
+  },
+  {
+    "elapsed": 1.622163,
+    "ascii": "T,10655,"
+  },
+  {
+    "elapsed": 1.623024,
+    "ascii": "0,0,0,0,246,"
+  },
+  {
+    "elapsed": 1.624004,
+    "ascii": "0,96,0\r\n"
+  },
+  {
+    "elapsed": 1.822055,
+    "ascii": "T,108"
+  },
+  {
+    "elapsed": 1.823026,
+    "ascii": "56,0,0,0,0,"
+  },
+  {
+    "elapsed": 1.824007,
+    "ascii": "247,0,98,0\r\n"
+  },
+  {
+    "elapsed": 2.023789,
+    "ascii": "T,11057,0,0,"
+  },
+  {
+    "elapsed": 2.024049,
+    "ascii": "0,0,247,0,10"
+  },
+  {
+    "elapsed": 2.025924,
+    "ascii": "0,0\r\n"
+  },
+  {
+    "elapsed": 2.029789,
+    "ascii": "A,pot_br"
+  },
+  {
+    "elapsed": 2.030178,
+    "ascii": "ut=0\r\nA,pot_"
+  },
+  {
+    "elapsed": 2.032248,
+    "ascii": "mv=0\r\nA,temp_brut=2274\r"
+  },
+  {
+    "elapsed": 2.033142,
+    "ascii": "\nA,temp_mv=1"
+  },
+  {
+    "elapsed": 2.034146,
+    "ascii": "833\r\nA,tour"
+  },
+  {
+    "elapsed": 2.035163,
+    "ascii": "s_dma=529\r\nA"
+  },
+  {
+    "elapsed": 2.036018,
+    "ascii": ",pertes_tx="
+  },
+  {
+    "elapsed": 2.037011,
+    "ascii": "0\r\n"
+  },
+  {
+    "elapsed": 2.226316,
+    "ascii": "T,11261,0,"
+  },
+  {
+    "elapsed": 2.227176,
+    "ascii": "0,0,0,245,0"
+  },
+  {
+    "elapsed": 2.228198,
+    "ascii": ",101,0\r\n"
+  },
+  {
+    "elapsed": 2.426765,
+    "ascii": "T,11462"
+  },
+  {
+    "elapsed": 2.427185,
+    "ascii": ",0,0,0,0,24"
+  },
+  {
+    "elapsed": 2.428201,
+    "ascii": "6,0,103,0\r\n"
+  },
+  {
+    "elapsed": 2.626803,
+    "ascii": "T,11"
+  },
+  {
+    "elapsed": 2.627182,
+    "ascii": "663,0,0,0,0"
+  },
+  {
+    "elapsed": 2.629266,
+    "ascii": ",248,0,105,0\r\n"
+  },
+  {
+    "elapsed": 2.826799,
+    "ascii": "T"
+  },
+  {
+    "elapsed": 2.827183,
+    "ascii": ",11864,0,0,"
+  },
+  {
+    "elapsed": 2.829035,
+    "ascii": "0,0,248,0,10"
+  },
+  {
+    "elapsed": 2.829102,
+    "ascii": "7,0\r\n"
+  },
+  {
+    "elapsed": 3.027601,
+    "ascii": "T,12065,0"
+  },
+  {
+    "elapsed": 3.028187,
+    "ascii": ",0,0,0,248,"
+  },
+  {
+    "elapsed": 3.029205,
+    "ascii": "0,109,0\r\n"
+  },
+  {
+    "elapsed": 3.227792,
+    "ascii": "T,1226"
+  },
+  {
+    "elapsed": 3.228192,
+    "ascii": "6,0,0,0,0,24"
+  },
+  {
+    "elapsed": 3.230033,
+    "ascii": "7,0,110,0\r\n"
+  },
+  {
+    "elapsed": 3.427236,
+    "ascii": "T,12"
+  },
+  {
+    "elapsed": 3.428106,
+    "ascii": "467,0,0,0,0"
+  },
+  {
+    "elapsed": 3.429204,
+    "ascii": ",247,0,112,0"
+  },
+  {
+    "elapsed": 3.430205,
+    "ascii": "\r\n"
+  },
+  {
+    "elapsed": 3.627211,
+    "ascii": "T"
+  },
+  {
+    "elapsed": 3.628039,
+    "ascii": ",12668,0,0,0"
+  },
+  {
+    "elapsed": 3.629036,
+    "ascii": ",0,247,0,11"
+  },
+  {
+    "elapsed": 3.63004,
+    "ascii": "4,0\r\n"
+  },
+  {
+    "elapsed": 3.828407,
+    "ascii": "T,12869,0,"
+  },
+  {
+    "elapsed": 3.829188,
+    "ascii": "0,0,0,248,0"
+  },
+  {
+    "elapsed": 3.83019,
+    "ascii": ",116,0\r\n"
+  },
+  {
+    "elapsed": 4.028579,
+    "ascii": "T,1307"
+  },
+  {
+    "elapsed": 4.02912,
+    "ascii": "0,0,0,0,0,24"
+  },
+  {
+    "elapsed": 4.030017,
+    "ascii": "7,0,118,0\r\n"
+  },
+  {
+    "elapsed": 4.466112,
+    "ascii": "Q"
+  },
+  {
+    "elapsed": 4.467019,
+    "ascii": ",echecs=0\r\n"
+  },
+  {
+    "elapsed": 4.663118,
+    "ascii": "T"
+  },
+  {
+    "elapsed": 4.664017,
+    "ascii": ",13708,0,0,"
+  },
+  {
+    "elapsed": 4.665026,
+    "ascii": "0,0,247,0,1,"
+  },
+  {
+    "elapsed": 4.666027,
+    "ascii": "0\r\n"
+  },
+  {
+    "elapsed": 4.864136,
+    "ascii": "T,13909,0"
+  },
+  {
+    "elapsed": 4.865037,
+    "ascii": ",0,0,0,246,0"
+  },
+  {
+    "elapsed": 4.866035,
+    "ascii": ",3,0\r\n"
+  },
+  {
+    "elapsed": 5.064802,
+    "ascii": "T,1411"
+  },
+  {
+    "elapsed": 5.065203,
+    "ascii": "0,0,0,0,0,24"
+  },
+  {
+    "elapsed": 5.066606,
+    "ascii": "9,0,5,0\r\n"
+  },
+  {
+    "elapsed": 5.26461,
+    "ascii": "T,1"
+  },
+  {
+    "elapsed": 5.265526,
+    "ascii": "4311,0,0,0,0"
+  },
+  {
+    "elapsed": 5.266979,
+    "ascii": ",247,0,7,0\r"
+  },
+  {
+    "elapsed": 5.267047,
+    "ascii": "\n"
+  },
+  {
+    "elapsed": 5.465999,
+    "ascii": "T,14512,0,0"
+  },
+  {
+    "elapsed": 5.466064,
+    "ascii": ",0,0,247,0,"
+  },
+  {
+    "elapsed": 5.467797,
+    "ascii": "9,0\r\n"
+  },
+  {
+    "elapsed": 5.666059,
+    "ascii": "T,14713,"
+  },
+  {
+    "elapsed": 5.66613,
+    "ascii": "0,0,0,0,247,"
+  },
+  {
+    "elapsed": 5.667802,
+    "ascii": "0,10,0\r\n"
+  },
+  {
+    "elapsed": 5.865949,
+    "ascii": "T,149"
+  },
+  {
+    "elapsed": 5.866068,
+    "ascii": "14,0,0,0,0,"
+  },
+  {
+    "elapsed": 5.86781,
+    "ascii": "246,0,12,0\r\n"
+  },
+  {
+    "elapsed": 6.0658,
+    "ascii": "T,"
+  },
+  {
+    "elapsed": 6.066189,
+    "ascii": "15115,0,0,0"
+  },
+  {
+    "elapsed": 6.068025,
+    "ascii": ",0,247,"
+  },
+  {
+    "elapsed": 6.069247,
+    "ascii": "0,14,0\r\nB,"
+  },
+  {
+    "elapsed": 6.070192,
+    "ascii": "ecarts=0\r\nB"
+  },
+  {
+    "elapsed": 6.071206,
+    "ascii": ",cycles_asm="
+  },
+  {
+    "elapsed": 6.072194,
+    "ascii": "32\r\nB,cycle"
+  },
+  {
+    "elapsed": 6.073201,
+    "ascii": "s_c=50\r\nB,cy"
+  },
+  {
+    "elapsed": 6.074202,
+    "ascii": "cles_fsm=44"
+  },
+  {
+    "elapsed": 6.075193,
+    "ascii": "\r\n"
+  },
+  {
+    "elapsed": 6.267102,
+    "ascii": "T,15317,0,"
+  },
+  {
+    "elapsed": 6.268026,
+    "ascii": "0,0,0,246,0"
+  },
+  {
+    "elapsed": 6.269002,
+    "ascii": ",16,0\r\n"
+  },
+  {
+    "elapsed": 6.467193,
+    "ascii": "T,155"
+  },
+  {
+    "elapsed": 6.468031,
+    "ascii": "18,0,0,0,0,2"
+  },
+  {
+    "elapsed": 6.469042,
+    "ascii": "4"
+  },
+  {
+    "elapsed": 6.470038,
+    "ascii": "8,0,18,0\r\n"
+  },
+  {
+    "elapsed": 6.667797,
+    "ascii": "T,1"
+  },
+  {
+    "elapsed": 6.668206,
+    "ascii": "5719,0,0,0,0"
+  },
+  {
+    "elapsed": 6.670042,
+    "ascii": ",248,0,19,0"
+  },
+  {
+    "elapsed": 6.670103,
+    "ascii": "\r\n"
+  },
+  {
+    "elapsed": 6.868365,
+    "ascii": "T,15920,0,0"
+  },
+  {
+    "elapsed": 6.869209,
+    "ascii": ",0,0,247,0,2"
+  },
+  {
+    "elapsed": 6.870221,
+    "ascii": "1,0\r\n"
+  },
+  {
+    "elapsed": 7.068804,
+    "ascii": "T,16121,"
+  },
+  {
+    "elapsed": 7.06921,
+    "ascii": "0,0,0,0,246,"
+  },
+  {
+    "elapsed": 7.070203,
+    "ascii": "0,23,0\r\n"
+  },
+  {
+    "elapsed": 7.268805,
+    "ascii": "T,163"
+  },
+  {
+    "elapsed": 7.269209,
+    "ascii": "22,0,0,0,0,2"
+  },
+  {
+    "elapsed": 7.271053,
+    "ascii": "46,0,25,0\r\n"
+  },
+  {
+    "elapsed": 7.468323,
+    "ascii": "T,"
+  },
+  {
+    "elapsed": 7.469235,
+    "ascii": "16523,0,0,0"
+  },
+  {
+    "elapsed": 7.470238,
+    "ascii": ",0,247,0,27,"
+  },
+  {
+    "elapsed": 7.471223,
+    "ascii": "0\r\n"
+  },
+  {
+    "elapsed": 7.66981,
+    "ascii": "T,16724,0,0"
+  },
+  {
+    "elapsed": 7.670221,
+    "ascii": ",0,0,248,0,"
+  },
+  {
+    "elapsed": 7.672054,
+    "ascii": "28,0\r\n"
+  },
+  {
+    "elapsed": 7.869811,
+    "ascii": "T,16925,"
+  },
+  {
+    "elapsed": 7.870205,
+    "ascii": "0,0,0,0,246"
+  },
+  {
+    "elapsed": 7.872045,
+    "ascii": ",0,30,0\r\n"
+  },
+  {
+    "elapsed": 8.069328,
+    "ascii": "T,17"
+  },
+  {
+    "elapsed": 8.070235,
+    "ascii": "126,0,0,0,0,"
+  },
+  {
+    "elapsed": 8.071232,
+    "ascii": "247,0,32,0\r"
+  },
+  {
+    "elapsed": 8.07222,
+    "ascii": "\nZ,ok\r\n"
+  },
+  {
+    "elapsed": 8.269143,
+    "ascii": "T"
+  },
+  {
+    "elapsed": 8.270058,
+    "ascii": ",17327,0,0,0"
+  },
+  {
+    "elapsed": 8.271061,
+    "ascii": ",0,244,0,3,"
+  },
+  {
+    "elapsed": 8.272033,
+    "ascii": "0\r\n"
+  },
+  {
+    "elapsed": 8.470131,
+    "ascii": "T,17528,"
+  },
+  {
+    "elapsed": 8.471051,
+    "ascii": "0,0,0,0,247,"
+  },
+  {
+    "elapsed": 8.472063,
+    "ascii": "0,5,0\r\n"
+  },
+  {
+    "elapsed": 8.670194,
+    "ascii": "T,177"
+  },
+  {
+    "elapsed": 8.671049,
+    "ascii": "29,0,0,0,0,2"
+  },
+  {
+    "elapsed": 8.672043,
+    "ascii": "47,0,6,0\r\n"
+  },
+  {
+    "elapsed": 8.87013,
+    "ascii": "T,"
+  },
+  {
+    "elapsed": 8.871034,
+    "ascii": "17930,0,0,0,"
+  },
+  {
+    "elapsed": 8.872036,
+    "ascii": "0,247,0,8,0"
+  },
+  {
+    "elapsed": 8.873028,
+    "ascii": "\r\n"
+  },
+  {
+    "elapsed": 9.072094,
+    "ascii": "T,18131,0,"
+  },
+  {
+    "elapsed": 9.072962,
+    "ascii": "0,0,0,246,0"
+  },
+  {
+    "elapsed": 9.073866,
+    "ascii": ",10,0\r\n"
+  },
+  {
+    "elapsed": 9.271923,
+    "ascii": "T,1833"
+  },
+  {
+    "elapsed": 9.272893,
+    "ascii": "2,0,0,0,0,24"
+  },
+  {
+    "elapsed": 9.273885,
+    "ascii": "7,0,12,0\r\n"
+  },
+  {
+    "elapsed": 9.472092,
+    "ascii": "T,"
+  },
+  {
+    "elapsed": 9.472953,
+    "ascii": "18533,0,0,0,"
+  },
+  {
+    "elapsed": 9.473862,
+    "ascii": "0,246,0,14,"
+  },
+  {
+    "elapsed": 9.474816,
+    "ascii": "0\r\n"
+  },
+  {
+    "elapsed": 9.673084,
+    "ascii": "T,18734,0,0"
+  },
+  {
+    "elapsed": 9.673955,
+    "ascii": ",0,0,247,0,1"
+  },
+  {
+    "elapsed": 9.674916,
+    "ascii": "5,0\r\n"
+  },
+  {
+    "elapsed": 9.872596,
+    "ascii": "T,18935,"
+  },
+  {
+    "elapsed": 9.87391,
+    "ascii": "0,0,0,0,247"
+  },
+  {
+    "elapsed": 9.874212,
+    "ascii": ",0,17,0\r\n"
+  },
+  {
+    "elapsed": 10.073086,
+    "ascii": "T,191"
+  },
+  {
+    "elapsed": 10.073939,
+    "ascii": "36,0,0,0,0,"
+  },
+  {
+    "elapsed": 10.074677,
+    "ascii": "247,0,19,0\r\n"
+  },
+  {
+    "elapsed": 10.272814,
+    "ascii": "T,"
+  },
+  {
+    "elapsed": 10.274603,
+    "ascii": "19337,0,0,0,0,248,0,53,"
+  },
+  {
+    "elapsed": 10.275441,
+    "ascii": "8\r\n"
+  },
+  {
+    "elapsed": 10.474413,
+    "ascii": "T,19538,0,0,0,0,247,0"
+  },
+  {
+    "elapsed": 10.475161,
+    "ascii": ",55,8\r\n"
+  },
+  {
+    "elapsed": 10.673647,
+    "ascii": "T,19739"
+  },
+  {
+    "elapsed": 10.674597,
+    "ascii": ",0,0,0,0,24"
+  },
+  {
+    "elapsed": 10.676818,
+    "ascii": "6,0,56,8\r\n"
+  },
+  {
+    "elapsed": 10.874053,
+    "ascii": "T,1"
+  },
+  {
+    "elapsed": 10.874105,
+    "ascii": "9940,0,0,0,0"
+  },
+  {
+    "elapsed": 10.875649,
+    "ascii": ",247,0,58,8\r"
+  },
+  {
+    "elapsed": 10.876629,
+    "ascii": "\n"
+  },
+  {
+    "elapsed": 11.075096,
+    "ascii": "T,20141,0,0,"
+  },
+  {
+    "elapsed": 11.07515,
+    "ascii": "0,0,247,0,6"
+  },
+  {
+    "elapsed": 11.076213,
+    "ascii": "0,8\r\n"
+  },
+  {
+    "elapsed": 11.275096,
+    "ascii": "T,20342,0"
+  },
+  {
+    "elapsed": 11.275152,
+    "ascii": ",0,0,0,246,"
+  },
+  {
+    "elapsed": 11.276583,
+    "ascii": "0,62,8\r\n"
+  },
+  {
+    "elapsed": 11.474128,
+    "ascii": "T,205"
+  },
+  {
+    "elapsed": 11.475072,
+    "ascii": "43,0,0,0,0,2"
+  },
+  {
+    "elapsed": 11.476043,
+    "ascii": "47,0,64,8\r\n"
+  },
+  {
+    "elapsed": 11.674131,
+    "ascii": "T,2"
+  },
+  {
+    "elapsed": 11.675018,
+    "ascii": "0744,0,0,0,"
+  },
+  {
+    "elapsed": 11.676017,
+    "ascii": "0,248,0,65,8"
+  },
+  {
+    "elapsed": 11.677008,
+    "ascii": "\r\n"
+  },
+  {
+    "elapsed": 11.876096,
+    "ascii": "T,20945,0,0"
+  },
+  {
+    "elapsed": 11.876953,
+    "ascii": ",0,0,246,0,6"
+  },
+  {
+    "elapsed": 11.877552,
+    "ascii": "7,8\r\n"
+  },
+  {
+    "elapsed": 12.07569,
+    "ascii": "T,21146,"
+  }
+]

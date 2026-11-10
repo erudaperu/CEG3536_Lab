@@ -1,0 +1,4 @@
+Initial diagnostic_O0 includes stale bytes from before port setup; actual command replies retained.
+First serie_O0_30s has pre-reset buffered data and only ~15 s post-reset; not the T9 acceptance record.
+First potentiometre_arret overlaps debugger halts/calls; UART drops and malformed fragments are not nominal cadence evidence. Preserve raw file; repeat without debugger.
+gdb_aapcs_O0 captured both interfaces then failed on missing assembly return type; gdb_vitesse_registres_O0 completed all five with explicit unsigned return type.

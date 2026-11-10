@@ -1,0 +1,1 @@
+Les scripts de collecte conservent les chemins et paramètres de la session du 10 novembre 2026. Adapter ces chemins avant réutilisation. Les journaux bruts incluent aussi les diagnostics et essais infructueux ; consulter le rapport pour les fenêtres validées.

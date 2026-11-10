@@ -103,7 +103,7 @@
 /* Sens de comptage : 0 si « A = B au front » correspond à la marche avant
  * (AI1 = 1, AI2 = 0) ; 1 pour inverser. À déterminer à la séance 2 (T5) en
  * comparant sens_mesure au sens commandé.                                   */
-    .equ ENC_SENS_INVERSE,      0
+    .equ ENC_SENS_INVERSE,      1  /* calibre sur plateforme : avant positif, arriere negatif */
 
 /* ---- Identifiants d'interface (section 4.2 de l'énoncé) --------------- */
     .equ MOTOR_ARRET,           0           /* motor_set_dir                 */

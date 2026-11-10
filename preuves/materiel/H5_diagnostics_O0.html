@@ -1,0 +1,17 @@
+<!doctype html><meta charset="utf-8"><style>body{font:20px Arial;padding:35px;background:#eff3f7;color:#183b56}pre{font:17px/24px monospace;background:#142333;color:white;padding:22px;white-space:pre-wrap}footer{font-size:14px}</style><h1>T7 / T10 - file et comparaison ASM/C à -O0</h1><p>STM32L552 réel - 10 novembre 2026 - preuve matérielle</p><pre>A,pot_brut=0
+A,pot_mv=0
+A,temp_brut=2274
+A,temp_mv=1833
+A,tours_dma=529
+A,pertes_tx=0
+Q,echecs=0
+B,ecarts=0
+B,cycles_asm=32
+B,cycles_c=50
+B,cycles_fsm=44
+Z,ok
+T,19337,0,0,0,0,248,0,53,8
+T,19538,0,0,0,0,247,0,55,8
+
+CCR1 ASM et C : [0, 2, 50, 100, 150, 198, 200, 200]
+Tableaux vérifiés en mémoire dans gdb_initial_O0.log.</pre><footer>Capture d’une vue des sorties authentiques enregistrées : diagnostic_O0.csv ; gdb_initial_O0.log. Journaux bruts conservés.</footer>

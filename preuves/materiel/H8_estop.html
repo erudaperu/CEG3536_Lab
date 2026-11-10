@@ -1,0 +1,29 @@
+<!doctype html><meta charset="utf-8"><style>body{font:20px Arial;padding:35px;background:#eff3f7;color:#183b56}pre{font:17px/24px monospace;background:#142333;color:white;padding:22px;white-space:pre-wrap}footer{font-size:14px}</style><h1>T8 - coupure réelle déclenchée par E-Stop</h1><p>STM32L552 réel - 10 novembre 2026 - preuve matérielle</p><pre>main () at Core/Src/main.c:91
+91	        telem_step(); /* vider la FIFO aussi entre les ticks */
+Breakpoint 1 at 0x800168c: file Core/Src/fsm.c, line 30.
+Note: automatically using hardware breakpoints for read-only addresses.
+
+Breakpoint 1, fsm_traiter (e=0x2002ff9c) at Core/Src/fsm.c:30
+30	    if (!e) return;
+=== Capture declenchee par EV_ESTOP physique apres coupure ISR ===
+$1 = {type = EV_ESTOP, valeur = 0, t_ms = 114559}
+$2 = 1
+$3 = 0
+$4 = 0
+0x42020410:	0x00000014
+0x42021014:	0x00000000
+0x40012c34:	0x00000000
+pc             0x800168c           0x800168c &lt;fsm_traiter+8&gt;
+sp             0x2002ff78          0x2002ff78
+lr             0x8001c6d           134225005
+0xe000ed28:	0x00000000	0x00000000
+main () at Core/Src/main.c:112
+112	        uint32_t user = button_pressed(BTN_USER);
+$5 = 3
+$6 = 1
+[Inferior 1 (Remote target) detached]
+
+
+PB2=1 ; PE15/STB=0 ; TIM1_CCR1=0 ; estop_flag=1.
+Le point d’arrêt survient après la coupure ISR.
+Cette capture ne mesure pas la latence &lt;1 ms.</pre><footer>Capture d’une vue des sorties authentiques enregistrées : estop_declenchement_physique.log. Journaux bruts conservés.</footer>

@@ -1,0 +1,2 @@
+Extrait des trames du journal continu, boot offset96044, ticks240000..360000. Valeurs identiques ; CRLF conservé.
+Minimum 25.3 °C ; maximum 29.4 °C.

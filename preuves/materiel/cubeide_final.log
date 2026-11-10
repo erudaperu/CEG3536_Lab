@@ -1,0 +1,48 @@
+Create.
+Opening 'CEG3536_Lab3_Arikan_Zuze'.
+13:21:32 **** Clean-only build of configuration Debug for project CEG3536_Lab3_Arikan_Zuze ****
+make -j24 clean 
+rm -rf ./Core/Startup/startup_stm32l552zetxq.d ./Core/Startup/startup_stm32l552zetxq.o
+rm -rf ./Core/Src/acq.cyclo ./Core/Src/acq.d ./Core/Src/acq.o ./Core/Src/acq.su ./Core/Src/adc_dma.cyclo ./Core/Src/adc_dma.d ./Core/Src/adc_dma.o ./Core/Src/adc_dma.su ./Core/Src/bench_l3a.cyclo ./Core/Src/bench_l3a.d ./Core/Src/bench_l3a.o ./Core/Src/bench_l3a.su ./Core/Src/buttons.d ./Core/Src/buttons.o ./Core/Src/buzzer.d ./Core/Src/buzzer.o ./Core/Src/encoder.d ./Core/Src/encoder.o ./Core/Src/estop.d ./Core/Src/estop.o ./Core/Src/evq.cyclo ./Core/Src/evq.d ./Core/Src/evq.o ./Core/Src/evq.su ./Core/Src/evq_test.cyclo ./Core/Src/evq_test.d ./Core/Src/evq_test.o ./Core/Src/evq_test.su ./Core/Src/fsm.cyclo ./Core/Src/fsm.d ./Core/Src/fsm.o ./Core/Src/fsm.su ./Core/Src/gpio.d ./Core/Src/gpio.o ./Core/Src/l3a_c.cyclo ./Core/Src/l3a_c.d ./Core/Src/l3a_c.o ./Core/Src/l3a_c.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/motor.d ./Core/Src/motor.o ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/systick.d ./Core/Src/systick.o ./Core/Src/telem.cyclo ./Core/Src/telem.d ./Core/Src/telem.o ./Core/Src/telem.su ./Core/Src/vitesse.d ./Core/Src/vitesse.o
+rm -rf CEG3536_Lab3_Arikan_Zuze.elf CEG3536_Lab3_Arikan_Zuze.list CEG3536_Lab3_Arikan_Zuze.map default.size.stdout
+ 
+
+13:21:32 Build Finished. 0 errors, 0 warnings. (took 61ms)
+
+13:21:32 **** Build of configuration Debug for project CEG3536_Lab3_Arikan_Zuze ****
+make -j24 all 
+arm-none-eabi-gcc -mcpu=cortex-m33 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Startup/startup_stm32l552zetxq.d" -MT"Core/Startup/startup_stm32l552zetxq.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Startup/startup_stm32l552zetxq.o" "../Core/Startup/startup_stm32l552zetxq.s"
+arm-none-eabi-gcc "../Core/Src/acq.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DSTM32L552xx -c -I../Core/Inc -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32L5xx/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -std=gnu11 -Wall -Wextra -MMD -MP -MF"Core/Src/acq.d" -MT"Core/Src/acq.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/acq.o"
+arm-none-eabi-gcc "../Core/Src/adc_dma.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DSTM32L552xx -c -I../Core/Inc -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32L5xx/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -std=gnu11 -Wall -Wextra -MMD -MP -MF"Core/Src/adc_dma.d" -MT"Core/Src/adc_dma.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/adc_dma.o"
+arm-none-eabi-gcc "../Core/Src/bench_l3a.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DSTM32L552xx -c -I../Core/Inc -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32L5xx/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -std=gnu11 -Wall -Wextra -MMD -MP -MF"Core/Src/bench_l3a.d" -MT"Core/Src/bench_l3a.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/bench_l3a.o"
+arm-none-eabi-gcc -mcpu=cortex-m33 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Src/buttons.d" -MT"Core/Src/buttons.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/buttons.o" "../Core/Src/buttons.s"
+arm-none-eabi-gcc -mcpu=cortex-m33 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Src/buzzer.d" -MT"Core/Src/buzzer.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/buzzer.o" "../Core/Src/buzzer.s"
+arm-none-eabi-gcc -mcpu=cortex-m33 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Src/encoder.d" -MT"Core/Src/encoder.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/encoder.o" "../Core/Src/encoder.s"
+arm-none-eabi-gcc -mcpu=cortex-m33 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Src/estop.d" -MT"Core/Src/estop.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/estop.o" "../Core/Src/estop.s"
+arm-none-eabi-gcc "../Core/Src/evq.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DSTM32L552xx -c -I../Core/Inc -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32L5xx/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -std=gnu11 -Wall -Wextra -MMD -MP -MF"Core/Src/evq.d" -MT"Core/Src/evq.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/evq.o"
+arm-none-eabi-gcc "../Core/Src/evq_test.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DSTM32L552xx -c -I../Core/Inc -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32L5xx/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -std=gnu11 -Wall -Wextra -MMD -MP -MF"Core/Src/evq_test.d" -MT"Core/Src/evq_test.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/evq_test.o"
+arm-none-eabi-gcc "../Core/Src/fsm.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DSTM32L552xx -c -I../Core/Inc -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32L5xx/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -std=gnu11 -Wall -Wextra -MMD -MP -MF"Core/Src/fsm.d" -MT"Core/Src/fsm.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/fsm.o"
+arm-none-eabi-gcc -mcpu=cortex-m33 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Src/gpio.d" -MT"Core/Src/gpio.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/gpio.o" "../Core/Src/gpio.s"
+arm-none-eabi-gcc "../Core/Src/l3a_c.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DSTM32L552xx -c -I../Core/Inc -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32L5xx/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -std=gnu11 -Wall -Wextra -MMD -MP -MF"Core/Src/l3a_c.d" -MT"Core/Src/l3a_c.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/l3a_c.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DSTM32L552xx -c -I../Core/Inc -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32L5xx/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -std=gnu11 -Wall -Wextra -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -mcpu=cortex-m33 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Src/motor.d" -MT"Core/Src/motor.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/motor.o" "../Core/Src/motor.s"
+arm-none-eabi-gcc "../Core/Src/syscalls.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DSTM32L552xx -c -I../Core/Inc -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32L5xx/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -std=gnu11 -Wall -Wextra -MMD -MP -MF"Core/Src/syscalls.d" -MT"Core/Src/syscalls.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/syscalls.o"
+arm-none-eabi-gcc "../Core/Src/sysmem.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DSTM32L552xx -c -I../Core/Inc -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32L5xx/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -std=gnu11 -Wall -Wextra -MMD -MP -MF"Core/Src/sysmem.d" -MT"Core/Src/sysmem.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/sysmem.o"
+arm-none-eabi-gcc -mcpu=cortex-m33 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Src/systick.d" -MT"Core/Src/systick.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/systick.o" "../Core/Src/systick.s"
+arm-none-eabi-gcc "../Core/Src/telem.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DSTM32L552xx -c -I../Core/Inc -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32L5xx/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -std=gnu11 -Wall -Wextra -MMD -MP -MF"Core/Src/telem.d" -MT"Core/Src/telem.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/telem.o"
+arm-none-eabi-gcc -mcpu=cortex-m33 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Src/vitesse.d" -MT"Core/Src/vitesse.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/vitesse.o" "../Core/Src/vitesse.s"
+arm-none-eabi-gcc -o "CEG3536_Lab3_Arikan_Zuze.elf" @"objects.list"   -mcpu=cortex-m33 -T"/home/erenarikan/.codex/.chatgpt-projects/g-p-6a8b6ddab12c8191bf5a0182ace3f622/output/lab3/CEG3536_Lab3_Arikan_Zuze/STM32L552ZETXQ_FLASH.ld" --specs=nosys.specs -Wl,-Map="CEG3536_Lab3_Arikan_Zuze.map" -Wl,--gc-sections -static -Wl,-z,noexecstack --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CEG3536_Lab3_Arikan_Zuze.elf
+ 
+arm-none-eabi-size  CEG3536_Lab3_Arikan_Zuze.elf 
+arm-none-eabi-objdump -h -S CEG3536_Lab3_Arikan_Zuze.elf  > "CEG3536_Lab3_Arikan_Zuze.list"
+   text	   data	    bss	    dec	    hex	filename
+   9856	     32	   3216	  13104	   3330	CEG3536_Lab3_Arikan_Zuze.elf
+Finished building: default.size.stdout
+ 
+Finished building: CEG3536_Lab3_Arikan_Zuze.list
+ 
+
+13:21:32 Build Finished. 0 errors, 0 warnings. (took 260ms)
+
+Saving workspace.

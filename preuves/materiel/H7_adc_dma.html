@@ -1,0 +1,24 @@
+<!doctype html><meta charset="utf-8"><style>body{font:20px Arial;padding:35px;background:#eff3f7;color:#183b56}pre{font:17px/24px monospace;background:#142333;color:white;padding:22px;white-space:pre-wrap}footer{font-size:14px}</style><h1>T4 - milieu et débit DMA</h1><p>STM32L552 réel - 10 novembre 2026 - preuve matérielle</p><pre>A,pot_brut=2053
+A,pot_mv=1654
+A,temp_brut=2275
+A,temp_mv=1833
+A,tours_dma=3030
+A,pertes_tx=0
+A,pot_brut=2053
+A,pot_mv=1654
+A,temp_brut=2277
+A,temp_mv=1834
+A,tours_dma=3126
+A,pertes_tx=0
+A,pot_brut=2053
+A,pot_mv=1654
+A,temp_brut=2274
+A,temp_mv=1833
+A,tours_dma=3222
+A,pertes_tx=0
+
+Trois commandes a espacées de 2 s.
+Tours : 3030 -&gt; 3126 -&gt; 3222 ; 64 paires par tour.
+Débit estimé : 96 × 64 / 2 = 3072 échantillons/s/voie.
+Attendu : 3062,79 ; écart estimé +0,30 %.
+Mesure sur 2 s, incertitude de phase et de lecture du compteur.</pre><footer>Capture d’une vue des sorties authentiques enregistrées : milieu_O2.csv ; milieu_O2.timestamps.json. Journaux bruts conservés.</footer>

@@ -132,7 +132,7 @@
     .equ ENC_B_PIN, 1
     .equ BUZZER_PIN, 0
     .equ ENC_PUPDR, 0
-    .equ ENC_SENS_INVERSE, 0
+    .equ ENC_SENS_INVERSE, 1
     .equ MOTOR_ARRET, 0
     .equ MOTOR_AVANT, 1
     .equ MOTOR_ARRIERE, 2

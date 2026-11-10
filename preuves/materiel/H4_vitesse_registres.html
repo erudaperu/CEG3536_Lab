@@ -1,0 +1,19 @@
+<!doctype html><meta charset="utf-8"><style>body{font:20px Arial;padding:35px;background:#eff3f7;color:#183b56}pre{font:17px/24px monospace;background:#142333;color:white;padding:22px;white-space:pre-wrap}footer{font-size:14px}</style><h1>T3 / T4 - calculs et périphériques</h1><p>STM32L552 réel - 10 novembre 2026 - preuve matérielle</p><pre>fsm_sorties () at Core/Src/fsm.c:95
+95	        led_set(dels[etat]);
+=== T3 cinq appels de test sur STM32, arguments injectes ===
+Note: automatically using hardware breakpoints for read-only addresses.
+$1 = 0
+$2 = 21028
+$3 = 15728944
+$4 = 39322360
+$5 = 1378069980
+=== Registres peripheriques ADC1 DMA1 LPUART1 ===
+0x42028000:	0x0000000b	0x00000000	0x10000005	0x00003003
+0x42028010:	0x00000000	0x000001f8
+0x40020008:	0x000005a1	0x00000074	0x42028040	0x20000394
+0x40008000:	0x2000000d	0x00000000	0x00000000	0x000022b9
+0x40008010:	0x00000000	0x00000000	0x00000000	0x0de000f8
+0x40008020:	0x00000000	0x00000061	0x00000073	0x00000000
+0x42021014:	0x00000000
+0xe000ed28:	0x00000000	0x00000000
+[Inferior 1 (Remote target) detached]</pre><footer>Capture d’une vue des sorties authentiques enregistrées : gdb_vitesse_registres_O0.log. Journaux bruts conservés.</footer>
