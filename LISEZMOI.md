@@ -12,7 +12,7 @@ Projet C + assembleur intégré au projet Lab 2 local, préparé le 10 novembre 
 - Acquisition, commande, interruption injectée, saturation et formateur : tests Linux réussis.
 - Rapport de 10 pages, 7 pages d'annexes et 2 fiches périphériques dans `rapport/`.
 
-**Aucune carte STM32/ST-LINK n'était connectée.** Les mesures ADC/DMA, température, moteur, UART réel, latence E-Stop et cycles DWT restent à réaliser sur la plateforme. Les essais Windows et la démonstration ne sont pas attestés. Le fichier `telemetrie_synthetique.csv` contient des données de test, pas un relevé série.
+**Mise à jour du 10 novembre : ST-LINK connecté sur /dev/ttyACM0, mais cible à 0,00 V et processeur inaccessible (HOTPLUG et sous reset).** Les mesures ADC/DMA, température, moteur, UART réel, latence E-Stop et cycles DWT restent à réaliser sur la plateforme. Les essais Windows et la démonstration ne sont pas attestés. Le fichier `telemetrie_synthetique.csv` contient des données de test, pas un relevé série.
 
 ## Ouvrir et construire
 
@@ -87,3 +87,7 @@ Les checkpoints ont été créés durant cette session avec l'auteur **Codex (Op
 Énoncé Lab 3 v1.3 et complément fournis ; projet Lab 2 retrouvé dans `Documents/Codex/2026-10-20/g/work/CEG3536_Lab` ; en-têtes CMSIS/ST fournis. Les fichiers assembleur bas niveau et leurs constantes ont été conservés octet pour octet. Les documents antérieurs joints dans `references/` restent dans leur état d'origine.
 
 Assistance Codex/OpenAI (famille GPT-6) pour l'implémentation, les essais, les traces et la rédaction. Le rapport décrit l'usage et les limites. Chaque membre doit comprendre et pouvoir modifier les modules avant la démonstration.
+
+## Démonstration et connexion matérielle
+
+Voir GUIDE_DEMONSTRATION.md et rapport/Guide_Demonstration_CEG3536_Lab3.pdf. Journaux authentiques de connexion dans preuves/materiel/. Aucun chargement ni mesure sur cible n’a été possible lors de cette tentative.
