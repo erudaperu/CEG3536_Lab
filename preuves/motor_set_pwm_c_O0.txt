@@ -1,0 +1,45 @@
+
+/home/erenarikan/.codex/.chatgpt-projects/g-p-6a8b6ddab12c8191bf5a0182ace3f622/output/lab3/CEG3536_Lab3_Arikan_Zuze/build/O0/CEG3536_Lab3.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+08001a10 <motor_set_pwm_c>:
+ * Saturation a 100 %, PWM_PLEINE=200, meme valeur ecrite et retour.
+ * Seul le banc de comparaison appelle cette version ; production en assembleur. */
+#include "stm32l552xx.h"
+#include "bench_l3a.h"
+uint32_t motor_set_pwm_c(uint32_t pct)
+{
+ 8001a10:	b480      	push	{r7}
+ 8001a12:	b085      	sub	sp, #20
+ 8001a14:	af00      	add	r7, sp, #0
+ 8001a16:	6078      	str	r0, [r7, #4]
+    if (pct > 100u) pct = 100u;
+ 8001a18:	687b      	ldr	r3, [r7, #4]
+ 8001a1a:	2b64      	cmp	r3, #100	@ 0x64
+ 8001a1c:	d901      	bls.n	8001a22 <motor_set_pwm_c+0x12>
+ 8001a1e:	2364      	movs	r3, #100	@ 0x64
+ 8001a20:	607b      	str	r3, [r7, #4]
+    uint32_t ccr = (pct * 200u) / 100u;
+ 8001a22:	687b      	ldr	r3, [r7, #4]
+ 8001a24:	22c8      	movs	r2, #200	@ 0xc8
+ 8001a26:	fb02 f303 	mul.w	r3, r2, r3
+ 8001a2a:	4a07      	ldr	r2, [pc, #28]	@ (8001a48 <motor_set_pwm_c+0x38>)
+ 8001a2c:	fba2 2303 	umull	r2, r3, r2, r3
+ 8001a30:	095b      	lsrs	r3, r3, #5
+ 8001a32:	60fb      	str	r3, [r7, #12]
+    TIM1->CCR1 = ccr;
+ 8001a34:	4a05      	ldr	r2, [pc, #20]	@ (8001a4c <motor_set_pwm_c+0x3c>)
+ 8001a36:	68fb      	ldr	r3, [r7, #12]
+ 8001a38:	6353      	str	r3, [r2, #52]	@ 0x34
+    return ccr;
+ 8001a3a:	68fb      	ldr	r3, [r7, #12]
+}
+ 8001a3c:	4618      	mov	r0, r3
+ 8001a3e:	3714      	adds	r7, #20
+ 8001a40:	46bd      	mov	sp, r7
+ 8001a42:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8001a46:	4770      	bx	lr
+ 8001a48:	51eb851f 	.word	0x51eb851f
+ 8001a4c:	40012c00 	.word	0x40012c00

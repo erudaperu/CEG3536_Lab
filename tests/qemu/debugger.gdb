@@ -10,6 +10,8 @@ info registers r0 r1 sp lr pc
 print /u ((unsigned int)$sp & 7)
 x/8wx $sp
 print /x preuve_volatile
+echo Variable volatile partagee enc_count (valeur injectee par le banc) :\n
+x/wd &enc_count
 disassemble /r enc_fronts_vers_rpm_q16
 finish
 echo \n=== Retour Q16.16 pour 1870 fronts ===\n

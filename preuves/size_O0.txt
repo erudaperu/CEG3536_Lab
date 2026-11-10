@@ -1,0 +1,2 @@
+   text	   data	    bss	    dec	    hex	filename
+   9852	     32	   3216	  13100	   332c	/home/erenarikan/.codex/.chatgpt-projects/g-p-6a8b6ddab12c8191bf5a0182ace3f622/output/lab3/CEG3536_Lab3_Arikan_Zuze/build/O0/CEG3536_Lab3.elf

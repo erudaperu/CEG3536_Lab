@@ -27,6 +27,9 @@ int main(void)
     acq_init(temp,samples+1,2,64,-10000,10900,1930);
     acq_config_circulaire(temp,64,position);
     assert(acq_brut(pot)==2048 && acq_valeur(pot)==50);
+    for(unsigned i=0;i<64;i++) samples[2*i+1]=(uint16_t)i;
+    assert(acq_brut(temp)==32); /* moyenne arrondie de 0..63, pas de 0..15 */
+    for(unsigned i=0;i<64;i++) samples[2*i+1]=2272;
     int before=acq_valeur(temp);
     acq_init(pot,samples,2,16,50,3300,0);
     assert(acq_valeur(pot)==25 && acq_valeur(temp)==before);

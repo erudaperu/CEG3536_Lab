@@ -10,3 +10,5 @@ tests/*.o
 **/__pycache__/
 *.core
 core
+historique_lab3.bundle
+MANIFEST_SHA256.txt

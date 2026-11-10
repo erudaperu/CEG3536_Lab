@@ -84,7 +84,7 @@ uint32_t evq_autotest(void)
             ok = ok && evq_pop(&e) && e.type == EV_TEST && e.valeur == j && e.t_ms == UINT32_MAX-j;
         echecs += cas_ok(10u, ok && !evq_pop(&e));
     }
-    /* 12. milliers de tours sans perte ni corruption */
+    /* 12. 10 000 transferts avec enroulements repetes, sans corruption */
     {
         int ok = 1;
         for (uint32_t j = 0u; j < 10000u; ++j)

@@ -1,0 +1,23 @@
+10:40:04 **** Build of configuration Debug for project CEG3536_Lab3_Arikan_Zuze ****
+make -j24 all 
+arm-none-eabi-gcc "../Core/Src/acq.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DSTM32L552xx -c -I../Core/Inc -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32L5xx/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -std=gnu11 -Wall -Wextra -MMD -MP -MF"Core/Src/acq.d" -MT"Core/Src/acq.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/acq.o"
+arm-none-eabi-gcc "../Core/Src/adc_dma.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DSTM32L552xx -c -I../Core/Inc -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32L5xx/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -std=gnu11 -Wall -Wextra -MMD -MP -MF"Core/Src/adc_dma.d" -MT"Core/Src/adc_dma.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/adc_dma.o"
+arm-none-eabi-gcc "../Core/Src/bench_l3a.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DSTM32L552xx -c -I../Core/Inc -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32L5xx/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -std=gnu11 -Wall -Wextra -MMD -MP -MF"Core/Src/bench_l3a.d" -MT"Core/Src/bench_l3a.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/bench_l3a.o"
+arm-none-eabi-gcc "../Core/Src/fsm.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DSTM32L552xx -c -I../Core/Inc -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32L5xx/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -std=gnu11 -Wall -Wextra -MMD -MP -MF"Core/Src/fsm.d" -MT"Core/Src/fsm.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/fsm.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DSTM32L552xx -c -I../Core/Inc -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32L5xx/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -std=gnu11 -Wall -Wextra -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/telem.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DSTM32L552xx -c -I../Core/Inc -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32L5xx/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -std=gnu11 -Wall -Wextra -MMD -MP -MF"Core/Src/telem.d" -MT"Core/Src/telem.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/telem.o"
+arm-none-eabi-gcc -o "CEG3536_Lab3_Arikan_Zuze.elf" @"objects.list"   -mcpu=cortex-m33 -T"/home/erenarikan/.codex/.chatgpt-projects/g-p-6a8b6ddab12c8191bf5a0182ace3f622/output/lab3/CEG3536_Lab3_Arikan_Zuze/STM32L552ZETXQ_FLASH.ld" --specs=nosys.specs -Wl,-Map="CEG3536_Lab3_Arikan_Zuze.map" -Wl,--gc-sections -static -Wl,-z,noexecstack --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CEG3536_Lab3_Arikan_Zuze.elf
+ 
+arm-none-eabi-size  CEG3536_Lab3_Arikan_Zuze.elf 
+arm-none-eabi-objdump -h -S CEG3536_Lab3_Arikan_Zuze.elf  > "CEG3536_Lab3_Arikan_Zuze.list"
+   text	   data	    bss	    dec	    hex	filename
+   9852	     32	   3216	  13100	   332c	CEG3536_Lab3_Arikan_Zuze.elf
+Finished building: default.size.stdout
+ 
+Finished building: CEG3536_Lab3_Arikan_Zuze.list
+ 
+
+10:40:04 Build Finished. 0 errors, 0 warnings. (took 214ms)
+
+Saving workspace.

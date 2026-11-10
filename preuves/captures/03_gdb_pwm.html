@@ -1,0 +1,27 @@
+<!doctype html><html lang="fr"><meta charset="utf-8"><title>Comparaison PWM : paramètre, pile et registre</title>
+<style>*{box-sizing:border-box}body{margin:0;background:#f1f4f8;color:#182334;font:17px Arial,sans-serif}main{padding:34px 38px}.kicker{font-size:13px;letter-spacing:1.5px;color:#486484;font-weight:bold}h1{font-size:28px;margin:10px 0 12px}.scope{padding:12px 15px;background:#e2eaf3;border-left:4px solid #36658a;margin-bottom:18px;line-height:1.4}pre{font:16px/22px 'DejaVu Sans Mono',monospace;color:#eef5ff;background:#101b2a;padding:22px;margin:0;white-space:pre-wrap;overflow-wrap:anywhere;border-radius:5px}footer{font-size:12px;color:#516174;margin-top:13px}</style>
+<main><div class="kicker">CEG3536 · LABORATOIRE 3 · 10 NOVEMBRE 2026</div><h1>Comparaison PWM : paramètre, pile et registre</h1><div class="scope">CPU Cortex-M33 émulé. TIM1 est redirigé en RAM à 0x30001000 pour comparer les effets de bord.</div><pre>=== L3-A : appel C vers motor_set_pwm, TIM1 redirige en RAM ===
+r0             0x4b                75
+r1             0x30000064          805306468
+sp             0x30003f98          0x30003f98
+lr             0x100000e3          268435683
+pc             0x10000460          0x10000460 &lt;motor_set_pwm&gt;
+$4 = 0
+0x30003f98:     0x00000000      0x00000000      0x00000001      0x00000019
+0x30003fa8:     0x00000032      0x0000004b      0x00000063      0x00000064
+Dump of assembler code for function motor_set_pwm:
+=&gt; 0x10000460 &lt;+224&gt;:   2864            cmp     r0, #100        @ 0x64
+   0x10000462 &lt;+2&gt;:     bf88            it      hi
+   0x10000464 &lt;+4&gt;:     2064            movhi   r0, #100        @ 0x64
+   0x10000466 &lt;+6&gt;:     21c8            movs    r1, #200        @ 0xc8
+   0x10000468 &lt;+8&gt;:     fb00 f001       mul.w   r0, r0, r1
+   0x1000046c &lt;+12&gt;:    2164            movs    r1, #100        @ 0x64
+   0x1000046e &lt;+14&gt;:    fbb0 f0f1       udiv    r0, r0, r1
+   0x10000472 &lt;+18&gt;:    4a1f            ldr     r2, [pc, #124]  @ (0x100004f0)
+   0x10000474 &lt;+20&gt;:    6350            str     r0, [r2, #52]   @ 0x34
+   0x10000476 &lt;+22&gt;:    4770            bx      lr
+End of assembler dump.
+0x100000e2 in main () at tests/qemu/test_target.c:28
+28              CCR1_SIM=0u; ret_asm[i]=motor_set_pwm(cas_pwm[i]); ccr_asm[i]=CCR1_SIM;
+$5 = 150
+0x30001034:     150</pre><footer>Capture d'une vue HTML des sorties enregistrées. Extrait de gdb_cortex_m33.log. Les journaux bruts sont fournis dans preuves/.</footer></main></html>

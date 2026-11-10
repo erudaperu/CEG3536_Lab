@@ -1,0 +1,7 @@
+*.pdf binary
+*.png binary
+*.elf binary
+*.bin binary
+*.csv -text
+Core/Src/*.s -text
+Core/Src/*.inc -text
