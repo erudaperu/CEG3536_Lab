@@ -55,3 +55,7 @@ Les relevés des séances des 3 et 10 novembre, la présence à la démonstratio
 ## Assistance et provenance
 
 Codex (OpenAI, famille GPT-6) a aidé à coder, vérifier, instrumenter et rédiger. Les sorties des outils sont réelles ; les données d'essai artificielles et les registres simulés sont étiquetés. Les captures montrent une mise en page HTML des journaux bruts, pas l'interface d'un débogueur connecté à la carte.
+
+## 10 novembre 2026 - connexion matérielle
+
+ST-LINK/V2.1 0672FF555187534867211326 détecté, NUCLEO-L552ZE-Q et /dev/ttyACM0 présents. CubeProgrammer rapporte 0,00 V puis « Unable to get core ID / No STM32 target found », en HOTPLUG et sous reset. Aucun effacement, chargement ni modification des options. Un aperçu webcam ne montrait pas la plateforme ; il n’est pas conservé dans les livrables. Guide T1-T10 préparé, preuves matérielles toujours ouvertes.

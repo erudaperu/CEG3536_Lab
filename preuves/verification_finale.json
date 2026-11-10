@@ -2,10 +2,11 @@
   "report_pages": 10,
   "appendix_pages": 7,
   "peripheral_pages": 2,
-  "screenshots": 7,
+  "screenshots": 8,
   "builds_and_cpu_tests": "O0/O2 successful",
   "preserved_lab2_files": 9,
-  "hardware": "No STM32/ST-LINK connected; physical tests not executed",
+  "hardware": "ST-LINK detected; target reports 0.00 V; SWD fails HOTPLUG, under reset and 100 kHz; hardware tests not executed",
   "windows": "Not executed",
-  "pdf_visual_review": "All 19 final PDF pages rendered and reviewed; table contrast corrected"
+  "pdf_visual_review": "All 19 final PDF pages rendered and reviewed; table contrast corrected",
+  "guide_pages": 6
 }
