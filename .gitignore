@@ -1,0 +1,12 @@
+build/
+Debug/
+Release/
+hote/test_evq
+hote/test_evq.exe
+tests/test_modules
+tests/test_telem
+tests/test_v1
+tests/*.o
+**/__pycache__/
+*.core
+core
