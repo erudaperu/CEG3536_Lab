@@ -87,7 +87,7 @@ Le tampon physique comporte 64 paires. Le potentiomètre utilise les 16 dernièr
 - `versions/v1/` : acquisition initiale et son essai ; `versions/imperative/` : comparaison à variables globales.
 - Tags Git locaux `acq-v1` / `acq-v2` ; le bundle `historique_lab3.bundle` permet de consulter l'historique : `git clone historique_lab3.bundle lab3_historique`.
 
-Les checkpoints ont été créés durant cette session avec l'auteur **Codex (OpenAI)**. Ils ne représentent pas des contributions humaines ou des séances antérieures. Le dépôt distant de l'équipe n'a pas été modifié.
+Les checkpoints ont été créés durant cette session avec l'auteur **Codex (OpenAI)**. Ils ne représentent pas des contributions humaines ou des séances antérieures. La branche lab3 et les tags de version ont été publiés le 10 novembre 2026 : https://github.com/erudaperu/CEG3536_Lab/tree/lab3.
 
 ## Sources et assistance
 
