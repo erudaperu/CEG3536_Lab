@@ -1,0 +1,10 @@
+      -------------------------------------------------------------------
+                        STM32CubeProgrammer v2.23.0                  
+      -------------------------------------------------------------------
+
+ST-LINK SN  : 0672FF555187534867211326
+ST-LINK FW  : V2J48M35
+Board       : NUCLEO-L552ZE-Q
+Voltage     : 0.00V
+Error: Unable to get core ID
+Error: No STM32 target found! If your product embeds Debug Authentication, please perform a discovery using Debug Authentication

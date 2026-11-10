@@ -1,0 +1,2 @@
+Journal essais_physiques.csv, en-tete à offset 96044, ticks60000..145000.
+Données sans lissage, trames complètes. E-Stop observé à ticks130000, résolution200ms.

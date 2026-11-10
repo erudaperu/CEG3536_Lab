@@ -1,0 +1,11 @@
+[36m[01m      -------------------------------------------------------------------
+[39;49m[0m[36m[01m                        STM32CubeProgrammer v2.23.0                  
+[39;49m[0m[36m[01m      -------------------------------------------------------------------
+
+[39;49m[0m[90mST-LINK SN  : 0672FF555187534867211326
+[39;49m[0m[90mST-LINK FW  : V2J48M35
+[39;49m[0m[90mBoard       : NUCLEO-L552ZE-Q
+[39;49m[0m[90mVoltage     : 0.00V
+[39;49m[0mError: Unable to get core ID
+[39;49m[0m[00;31mError: No STM32 target found! If your product embeds Debug Authentication, please perform a discovery using Debug Authentication
+[39;49m[0m[39;49m[0m

@@ -1,0 +1,10 @@
+0x08001b44 in telem_step () at Core/Src/telem.c:72
+72	{
+=== Controle de sortie pour manipulation du cablage ; ceci n'est pas un test E-Stop physique ===
+$1 = 1
+$2 = 0
+Note: automatically using hardware breakpoints for read-only addresses.
+Arret logiciel impose pour diagnostic ; ne pas utiliser comme preuve d'un appui E-Stop.
+0x40012c34:	0x00000000
+0x42021014:	0x00000000
+[Inferior 1 (Remote target) detached]

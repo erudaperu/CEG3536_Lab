@@ -1,0 +1,13 @@
+0x08000ae4 in acq_valeur (a=<error reading variable: Cannot access memory at address 0x99>) at Core/Src/acq.c:101
+101	    if (a->initialisee && a->hysteresis > 0 &&
+Loading section .isr_vector, size 0x1f4 lma 0x8000000
+Loading section .text, size 0x231c lma 0x80001f4
+Loading section .rodata, size 0x168 lma 0x8002510
+Loading section .init_array, size 0x4 lma 0x8002678
+Loading section .fini_array, size 0x4 lma 0x800267c
+Loading section .data, size 0x20 lma 0x8002680
+Start address 0x0800245c, load size 9888
+Transfer rate: 11 KB/sec, 1648 bytes/write.
+[Inferior 1 (Remote target) detached]
+STM32 Successfully completed reset operation (System reset)
+STM32 Successfully completed reset operation (System reset)

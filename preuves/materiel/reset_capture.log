@@ -1,0 +1,5 @@
+0x08001d86 in ?? ()
+[Inferior 1 (Remote target) detached]
+warning: No executable has been specified and target does not support
+determining executable automatically.  Try using the "file" command.
+STM32 Successfully completed reset operation (System reset)

@@ -1,0 +1,5 @@
+Extrait sans modification des trames de essais_physiques.csv, dernier démarrage (firmware final O2).
+En-tête du même démarrage ; intervalle ticks_ms [20000,50000), soit 30 s.
+150 trames complètes. Journal continu et horodatages de réception conservés.
+Offset du H sélectionné dans le journal continu : 96044 octets.
+Image finale SHA256 1c8c29d820a4d480a5cc5814484352371c93e03b48b4f2fb1dc9884025c2bd20.

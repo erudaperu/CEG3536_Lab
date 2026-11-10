@@ -1,0 +1,26 @@
+{
+  "report_pages": 10,
+  "hardware_appendix_pages": 17,
+  "guide_pages": 5,
+  "software_appendix_pages": 7,
+  "peripheral_pages": 2,
+  "hardware_screenshots": 14,
+  "software_screenshots": 7,
+  "setup_photos": 1,
+  "plots": 2,
+  "builds": "STM32CubeIDE 0 errors/0 warnings; O0/O2 GCC and QEMU signed-encoder regression pass",
+  "hardware": "Both final images verified by flash readback; queue and PWM comparisons pass; final O2 left in ARRET, CCR1=0, STB=0, no CFSR/HFSR faults",
+  "telemetry_final": "150 frames/30s at 5.00Hz; no errors",
+  "remaining": [
+    "Absolute thermal calibration (no reference thermometer)",
+    "External OUT-IN comparison (invalid voltage; physical connection needs checking)",
+    "E-Stop electrical latency below1ms (explicitly left unmeasured)",
+    "Windows host execution",
+    "Formal demonstration and member attendance not attested"
+  ],
+  "encoder_changes": [
+    "MOVS to MOV.W preserves flags",
+    "ENC_SENS_INVERSE=1 calibrated and physically verified"
+  ],
+  "final_speed_control": "Last ADC pot3943; user instructed to lower Speed before User"
+}

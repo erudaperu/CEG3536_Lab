@@ -16,6 +16,7 @@
  * (front montant) et EXTI_FPR1 (front descendant), par écriture de 1.
  * ------------------------------------------------------------------------- */
 #include "registres.inc"
+#include "registres_lab2.inc"
 
     .syntax unified
     .cpu    cortex-m33
@@ -82,8 +83,8 @@ estop_init:
 
 /* void EXTI2_IRQHandler(void)   — vecteur d'interruption EXTI ligne 2
  * Remplace le gestionnaire faible (.weak) du fichier de démarrage.
- * Le matériel empile automatiquement r0-r3, r12, lr, pc, xPSR : une ISR
- * feuille peut utiliser r0-r3 sans les sauvegarder et retourne par bx lr.
+ * Le matériel empile automatiquement r0-r3, r12, lr, pc, xPSR. Comme cette
+ * ISR appelle motor_stop_now et buzzer_set, elle sauvegarde aussi LR.
  *
  * À COMPLÉTER (E4) :
  *   1. état sûr immédiat, par BSRR (pas de lecture-modification-écriture) :
@@ -97,6 +98,13 @@ estop_init:
     .type   EXTI2_IRQHandler, %function
 EXTI2_IRQHandler:
     /* ----- À COMPLÉTER : étapes 1 et 2 ----- */
+    push    {r4, lr}                  /* bl dans une ISR : garder EXC_RETURN */
+    bl      motor_stop_now           /* couper d'abord PWM et STB */
+    movs    r0, #1
+    bl      buzzer_set
+    ldr     r0, =buzzer_continu
+    movs    r1, #1
+    str     r1, [r0]
 
     ldr     r0, =GPIOC_BASE
     mov     r1, #(1 << (LED_VERTE_PIN + 16))
@@ -116,5 +124,6 @@ EXTI2_IRQHandler:
     mov     r1, #EXTI_LIGNE2
     str     r1, [r0, #EXTI_RPR1]
     str     r1, [r0, #EXTI_FPR1]
-    bx      lr
+    dsb
+    pop     {r4, pc}
     .size   EXTI2_IRQHandler, .-EXTI2_IRQHandler

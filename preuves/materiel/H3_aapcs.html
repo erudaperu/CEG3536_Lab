@@ -1,0 +1,36 @@
+<!doctype html><meta charset="utf-8"><style>body{font:20px Arial;padding:35px;background:#eff3f7;color:#183b56}pre{font:17px/24px monospace;background:#142333;color:white;padding:22px;white-space:pre-wrap}footer{font-size:14px}</style><h1>T2 - registres et pile sur STM32</h1><p>STM32L552 réel - 10 novembre 2026 - preuve matérielle</p><pre>=== T2 entree vitesse depuis le C - cible STM32 ===
+r0             0x0                 0
+r1             0x0                 0
+sp             0x2002ff78          0x2002ff78
+lr             0x800179d           134223773
+pc             0x8000820           0x8000820 &lt;enc_fronts_vers_rpm_q16&gt;
+$1 = 0
+0x2002ff78:	0x000260fc	0x2002ffa8	0x2002ff98	0x08001d39
+0x2002ff88:	0xffffd8f0	0x00002a94	0x00000789	0x00000000
+0x20000064:	0
+Dump of assembler code for function enc_fronts_vers_rpm_q16:
+=&gt; 0x08000820 &lt;+0&gt;:	f245 2124	movw	r1, #21028	@ 0x5224
+   0x08000824 &lt;+4&gt;:	fb00 f001	mul.w	r0, r0, r1
+   0x08000828 &lt;+8&gt;:	4770    	bx	lr
+End of assembler dump.
+0x0800179c in fsm_traiter (e=0x2002ffa8) at Core/Src/fsm.c:59
+59	        expose.vitesse_rpm_q16 = enc_fronts_vers_rpm_q16(e-&gt;valeur);
+=== Retour vitesse ===
+$2 = 0
+Breakpoint 2 at 0x8000720: file Core/Src/motor.s, line 154.
+
+Breakpoint 2, motor_init () at Core/Src/motor.s:154
+154	    cmp     r0, #100
+=== T2 entree PWM depuis le C - moteur en ARRET ===
+r0             0x0                 0
+r1             0x0                 0
+sp             0x2002ff68          0x2002ff68
+lr             0x800192d           134224173
+pc             0x8000720           0x8000720 &lt;motor_set_pwm&gt;
+$3 = 0
+0x2002ff68:	0x00000000	0x06000a1b	0x08002138	0x20000080
+0x2002ff78:	0x000260fc	0x2002ffa8	0x2002ff98	0x08001d4d
+fsm_sorties () at Core/Src/fsm.c:95
+95	        led_set(dels[etat]);
+$4 = 0
+0x40012c34:	0</pre><footer>Capture d’une vue des sorties authentiques enregistrées : gdb_aapcs_O0.log (partie achevée avant correction du type GDB). Journaux bruts conservés.</footer>

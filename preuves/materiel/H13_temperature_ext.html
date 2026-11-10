@@ -1,0 +1,25 @@
+<!doctype html><meta charset="utf-8"><style>body{font:20px Arial;padding:35px;background:#eff3f7;color:#183b56}pre{font:17px/24px monospace;background:#142333;color:white;padding:22px;white-space:pre-wrap}footer{font-size:14px}</style><h1>T6 - comparaison externe non validée</h1><p>STM32L552 réel - 10 novembre 2026 - preuve matérielle</p><pre>EXT, pont declare installe (configuration non verifiee en photo) :
+A,temp_brut=1272
+A,temp_mv=1023
+A,temp_brut=1261
+A,temp_mv=1019
+A,temp_brut=1249
+A,temp_mv=1006
+A,temp_brut=1270
+A,temp_mv=1025
+A,temp_brut=1268
+A,temp_mv=1022
+A,temp_brut=1257
+A,temp_mv=1012
+
+RETOUR INT :
+A,temp_brut=2258
+A,temp_mv=1820
+A,temp_brut=2257
+A,temp_mv=1819
+A,temp_brut=2258
+A,temp_mv=1820
+
+Ext ~1,01-1,03V : lecture incompatible avec un pont direct fonctionnel.
+Int ~1,82V : temperature plausible ~26C.
+Ne pas ajuster la calibration pour masquer ce defaut de raccordement.</pre><footer>Capture d’une vue des sorties authentiques enregistrées : temperature_externe_avec_fil.csv ; retour_interne.csv. Journaux bruts conservés.</footer>

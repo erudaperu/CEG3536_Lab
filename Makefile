@@ -1,16 +1,17 @@
-# CEG 3536 — Laboratoire 1 — construction en ligne de commande (facultatif)
+# CEG 3536 — Laboratoire 3 — construction en ligne de commande (facultatif)
 # Le projet se construit normalement dans STM32CubeIDE ; ce Makefile permet
 # de vérifier la compilation et de programmer la carte sans l'IDE.
-#   make          construire build/CEG3536_Lab1.elf et .bin
+#   make          construire build/CEG3536_Lab3.elf et .bin
 #   make flash    construire et programmer la carte (ST-LINK, SWD)
 #   make clean
 CLT   ?= C:/ST/STM32CubeCLT_1.21.0
-CC     = $(CLT)/GNU-tools-for-STM32/bin/arm-none-eabi-gcc
-OBJCPY = $(CLT)/GNU-tools-for-STM32/bin/arm-none-eabi-objcopy
-SIZE   = $(CLT)/GNU-tools-for-STM32/bin/arm-none-eabi-size
+TOOLCHAIN ?=
+CC     = $(TOOLCHAIN)arm-none-eabi-gcc
+OBJCPY = $(TOOLCHAIN)arm-none-eabi-objcopy
+SIZE   = $(TOOLCHAIN)arm-none-eabi-size
 PROG   = $(CLT)/STM32CubeProgrammer/bin/STM32_Programmer_CLI.exe
 
-TARGET  = CEG3536_Lab1
+TARGET  = CEG3536_Lab3
 BUILD   = build
 SRCDIR  = Core/Src
 STARTUP = Core/Startup/startup_stm32l552zetxq.s
@@ -18,11 +19,13 @@ LDSCRIPT = STM32L552ZETXQ_FLASH.ld
 
 # Mêmes options que STM32CubeIDE (projet Debug) : -O0 -g3, nano.specs, nosys.specs.
 # syscalls.c et sysmem.c sont les fichiers de support générés par CubeIDE.
+OPT ?= -O0
 CPU     = -mcpu=cortex-m33 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard
 ASFLAGS = $(CPU) -x assembler-with-cpp -g3 -DDEBUG -Wall
-CFLAGS  = $(CPU) -std=gnu11 -O0 -g3 -DDEBUG -DSTM32L552xx -Wall -ICore/Inc \
+CFLAGS  = $(CPU) -std=gnu11 $(OPT) -g3 -DDEBUG -DSTM32L552xx -Wall -Wextra -Werror -ICore/Inc -IDrivers/CMSIS/Include \
+          -IDrivers/CMSIS/Device/ST/STM32L5xx/Include \
           -ffunction-sections -fdata-sections -fstack-usage
-LDFLAGS = $(CPU) -T $(LDSCRIPT) -Wl,--gc-sections -static \
+LDFLAGS = $(CPU) -T $(LDSCRIPT) -Wl,--gc-sections,-z,noexecstack -static \
           -Wl,-Map=$(BUILD)/$(TARGET).map --specs=nano.specs --specs=nosys.specs \
           -Wl,--start-group -lc -lm -Wl,--end-group
 
@@ -36,7 +39,7 @@ all: $(BUILD)/$(TARGET).bin
 $(BUILD):
 	mkdir -p $(BUILD)
 
-$(BUILD)/%.o: $(SRCDIR)/%.s $(SRCDIR)/registres.inc | $(BUILD)
+$(BUILD)/%.o: $(SRCDIR)/%.s $(SRCDIR)/registres.inc $(SRCDIR)/registres_lab2.inc | $(BUILD)
 	$(CC) $(ASFLAGS) -c $< -o $@
 
 $(BUILD)/%.o: $(SRCDIR)/%.c | $(BUILD)

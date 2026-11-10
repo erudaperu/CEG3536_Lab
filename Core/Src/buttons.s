@@ -5,6 +5,8 @@
  * Routines exportées (AAPCS) : button_raw (fournie), button_pressed (À FAIRE),
  *                              delay_ms (fournie, boucle calibrée)
  * Variables (.bss)            : btn_valide[3], btn_compteur[3]
+ * Au laboratoire 2, delay_ms vient de systick.s ; l'ancienne version reste
+ * ci-dessous désactivée pour garder les commentaires du projet initial.
  * ------------------------------------------------------------------------- */
 #include "registres.inc"
 
@@ -123,6 +125,8 @@ button_pressed_non:
  * DELAY_BOUCLES_PAR_MS (registres.inc) doit être CALIBRÉE par mesure au point
  * de test et la valeur retenue rapportée. SysTick sera exigé au laboratoire 2.
  * Registres modifiés : r0, r1 (routine feuille).                            */
+#if 0 /* Laboratoire 2 : même interface maintenant fournie par systick.s.
+        * Le code du laboratoire 1 reste ici pour référence. */
     .global delay_ms
     .type   delay_ms, %function
 delay_ms:
@@ -137,3 +141,4 @@ delay_ms_boucle_int:
 delay_ms_fin:
     bx      lr
     .size   delay_ms, .-delay_ms
+#endif

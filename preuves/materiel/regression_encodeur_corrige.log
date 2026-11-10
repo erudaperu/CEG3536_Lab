@@ -1,0 +1,36 @@
+telem_step () at Core/Src/telem.c:72
+72	{
+=== Regression du sens encodeur sur STM32, entrees injectees, moteur arrete ===
+Note: automatically using hardware breakpoints for read-only addresses.
+$1 = 0
+$2 = 0
+$3 = 748
+$4 = 1
+$5 = 748
+$6 = 2
+Dump of assembler code for function encoder_read:
+   0x0800043e <+48>:	4603    	mov	r3, r0
+   0x08000440 <+2>:	480d    	ldr	r0, [pc, #52]	@ (0x8000478 <encoder_read_sans_pointeur+24>)
+   0x08000442 <+4>:	6801    	ldr	r1, [r0, #0]
+   0x08000444 <+6>:	480d    	ldr	r0, [pc, #52]	@ (0x800047c <encoder_read_sans_pointeur+28>)
+   0x08000446 <+8>:	6802    	ldr	r2, [r0, #0]
+   0x08000448 <+10>:	6001    	str	r1, [r0, #0]
+   0x0800044a <+12>:	1a89    	subs	r1, r1, r2
+   0x0800044c <+14>:	f04f 0200	mov.w	r2, #0
+   0x08000450 <+18>:	d004    	beq.n	0x800045c <encoder_read+30>
+   0x08000452 <+20>:	d502    	bpl.n	0x800045a <encoder_read+28>
+   0x08000454 <+22>:	4249    	negs	r1, r1
+   0x08000456 <+24>:	2202    	movs	r2, #2
+   0x08000458 <+26>:	e000    	b.n	0x800045c <encoder_read+30>
+   0x0800045a <+28>:	2201    	movs	r2, #1
+   0x0800045c <+30>:	b103    	cbz	r3, 0x8000460 <encoder_read+34>
+   0x0800045e <+32>:	601a    	str	r2, [r3, #0]
+   0x08000460 <+34>:	4808    	ldr	r0, [pc, #32]	@ (0x8000484 <encoder_read_sans_pointeur+36>)
+   0x08000462 <+36>:	6002    	str	r2, [r0, #0]
+   0x08000464 <+38>:	4806    	ldr	r0, [pc, #24]	@ (0x8000480 <encoder_read_sans_pointeur+32>)
+   0x08000466 <+40>:	6001    	str	r1, [r0, #0]
+   0x08000468 <+42>:	4608    	mov	r0, r1
+   0x0800046a <+44>:	4770    	bx	lr
+End of assembler dump.
+0xe000ed28:	0x00000000	0x00000000
+[Inferior 1 (Remote target) detached]

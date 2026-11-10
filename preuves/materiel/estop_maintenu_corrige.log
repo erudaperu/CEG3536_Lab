@@ -1,0 +1,20 @@
+acq_brut (a=0x20000080 <instances>) at Core/Src/acq.c:73
+73	        somme += a->src[index * a->pas];
+$1 = 0
+$2 = 0
+$3 = 0
+$4 = 0
+$5 = 5
+$6 = 1
+0x2000003c:	0	0	0
+0x20000048:	0	0	0
+0x42020810:	0x00000000
+0x42020410:	0x00000010
+0x42021014:	0x00000000
+0x40012c34:	0x00000000
+Note: automatically using hardware breakpoints for read-only addresses.
+$7 = 0
+$8 = 0
+$9 = 0
+0xe000ed28:	0x00000000	0x00000000
+[Inferior 1 (Remote target) detached]

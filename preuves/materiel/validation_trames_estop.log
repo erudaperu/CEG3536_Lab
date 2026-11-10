@@ -1,0 +1,13 @@
+lignes lues : 27 ; trames T valides : 26 ; autres lignes : 0
+en-tete H : present
+periode (ticks_ms) : moyenne 200.0 ms, min 200, max 200 ; cadence 5.00 Hz (OK)
+  etat               min       2  max       3  dernier       3
+  sens               min       0  max       2  dernier       0
+  consigne_pct       min       0  max     100  dernier       0
+  pwm_pct            min       0  max     100  dernier       0
+  temp_c_x10         min     250  max     255  dernier     250
+  vitesse_rpm_x100   min       0  max   37412  dernier       0
+  nb_evenements      min    2125  max    2192  dernier    2192
+  evq_debordements   min       0  max       0  dernier       0
+  vitesse 0.00 .. 374.12 tr/min ; temperature 25.0 .. 25.5 C
+RESULTAT : OK

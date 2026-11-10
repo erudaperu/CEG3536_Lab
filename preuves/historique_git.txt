@@ -1,0 +1,4 @@
+475b2e0 2026-11-10T10:39:17-05:00 Codex (OpenAI)
+Acquisition V2 filtering and circular history; add reproducible tests
+c73022e 2026-11-10T10:39:17-05:00 Codex (OpenAI)
+Lab3 baseline with acquisition V1; AI-assisted checkpoint

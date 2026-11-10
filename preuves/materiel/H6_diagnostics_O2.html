@@ -1,0 +1,14 @@
+<!doctype html><meta charset="utf-8"><style>body{font:20px Arial;padding:35px;background:#eff3f7;color:#183b56}pre{font:17px/24px monospace;background:#142333;color:white;padding:22px;white-space:pre-wrap}footer{font-size:14px}</style><h1>T4 / T10 - maximum et benchmark à -O2</h1><p>STM32L552 réel - 10 novembre 2026 - preuve matérielle</p><pre>A,pot_brut=4093
+A,pot_mv=3298
+A,temp_brut=2276
+A,temp_mv=1833
+A,tours_dma=449
+A,pertes_tx=0
+B,ecarts=0
+B,cycles_asm=23
+B,cycles_c=19
+B,cycles_fsm=22
+
+Relecture réelle de 8548 octets flash 0x08000000..0x08002163 : identique au BIN -O2.
+SHA256 : 18f66b2b424642cf0f601b6c2c0b40bd3a9d1a43e474f99019361acec1a3569f
+compare-sections GDB avait signalé des divergences ; la relecture binaire indépendante résout cette alerte.</pre><footer>Capture d’une vue des sorties authentiques enregistrées : maximum_et_banc_O2.csv ; verification_flash_O2.txt. Journaux bruts conservés.</footer>

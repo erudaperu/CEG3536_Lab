@@ -1,0 +1,262 @@
+
+/home/erenarikan/.codex/.chatgpt-projects/g-p-6a8b6ddab12c8191bf5a0182ace3f622/output/lab3/CEG3536_Lab3_Arikan_Zuze/build/O2/CEG3536_Lab3.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+080010bc <fsm_traiter>:
+    expose.sens = SENS_IMMOBILE;
+    fsm_sorties();
+}
+void fsm_traiter(const evq_event_t *e)
+{
+    if (!e) return;
+ 80010bc:	2800      	cmp	r0, #0
+ 80010be:	d074      	beq.n	80011aa <fsm_traiter+0xee>
+{
+ 80010c0:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+    switch (e->type) {
+ 80010c2:	7803      	ldrb	r3, [r0, #0]
+ 80010c4:	3b01      	subs	r3, #1
+ 80010c6:	2b04      	cmp	r3, #4
+ 80010c8:	d820      	bhi.n	800110c <fsm_traiter+0x50>
+ 80010ca:	e8df f003 	tbb	[pc, r3]
+ 80010ce:	6230      	.short	0x6230
+ 80010d0:	5903      	.short	0x5903
+ 80010d2:	20          	.byte	0x20
+ 80010d3:	00          	.byte	0x00
+    case EV_ESTOP:
+        if (etat != ETAT_ARRET_URGENCE) {
+ 80010d4:	4c48      	ldr	r4, [pc, #288]	@ (80011f8 <fsm_traiter+0x13c>)
+ 80010d6:	6823      	ldr	r3, [r4, #0]
+ 80010d8:	2b03      	cmp	r3, #3
+ 80010da:	d014      	beq.n	8001106 <fsm_traiter+0x4a>
+    if (etat != nouveau) compteur_transitions++;
+ 80010dc:	6823      	ldr	r3, [r4, #0]
+ 80010de:	2b03      	cmp	r3, #3
+ 80010e0:	d003      	beq.n	80010ea <fsm_traiter+0x2e>
+ 80010e2:	4a46      	ldr	r2, [pc, #280]	@ (80011fc <fsm_traiter+0x140>)
+ 80010e4:	6813      	ldr	r3, [r2, #0]
+ 80010e6:	3301      	adds	r3, #1
+ 80010e8:	6013      	str	r3, [r2, #0]
+    pwm_pct = rampe_compteur = 0u;
+ 80010ea:	2300      	movs	r3, #0
+    etat = nouveau;
+ 80010ec:	2603      	movs	r6, #3
+            entree(ETAT_ARRET_URGENCE);
+            clignote_compteur = 0u; clignote_phase = 1u;
+ 80010ee:	2101      	movs	r1, #1
+    pwm_pct = rampe_compteur = 0u;
+ 80010f0:	4a43      	ldr	r2, [pc, #268]	@ (8001200 <fsm_traiter+0x144>)
+    etat = nouveau;
+ 80010f2:	6026      	str	r6, [r4, #0]
+    pwm_pct = rampe_compteur = 0u;
+ 80010f4:	4d43      	ldr	r5, [pc, #268]	@ (8001204 <fsm_traiter+0x148>)
+ 80010f6:	6013      	str	r3, [r2, #0]
+    consigne_pct = (nouveau == ETAT_MARCHE_AVANT || nouveau == ETAT_MARCHE_ARRIERE) ? consigne_pot : 0u;
+ 80010f8:	4843      	ldr	r0, [pc, #268]	@ (8001208 <fsm_traiter+0x14c>)
+            clignote_compteur = 0u; clignote_phase = 1u;
+ 80010fa:	4f44      	ldr	r7, [pc, #272]	@ (800120c <fsm_traiter+0x150>)
+ 80010fc:	4a44      	ldr	r2, [pc, #272]	@ (8001210 <fsm_traiter+0x154>)
+ 80010fe:	603b      	str	r3, [r7, #0]
+    pwm_pct = rampe_compteur = 0u;
+ 8001100:	602b      	str	r3, [r5, #0]
+    consigne_pct = (nouveau == ETAT_MARCHE_AVANT || nouveau == ETAT_MARCHE_ARRIERE) ? consigne_pot : 0u;
+ 8001102:	6003      	str	r3, [r0, #0]
+            clignote_compteur = 0u; clignote_phase = 1u;
+ 8001104:	6011      	str	r1, [r2, #0]
+        }
+        bips = 0u;
+ 8001106:	2200      	movs	r2, #0
+ 8001108:	4b42      	ldr	r3, [pc, #264]	@ (8001214 <fsm_traiter+0x158>)
+ 800110a:	601a      	str	r2, [r3, #0]
+        expose.vitesse_rpm_q16 = enc_fronts_vers_rpm_q16(e->valeur);
+        expose.sens = sens_mesure;
+        break;
+    default: break;
+    }
+}
+ 800110c:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+        consigne_pot = e->valeur > 100u ? 100u : e->valeur;
+ 800110e:	6843      	ldr	r3, [r0, #4]
+        if (etat == ETAT_MARCHE_AVANT || etat == ETAT_MARCHE_ARRIERE) consigne_pct = consigne_pot;
+ 8001110:	4a39      	ldr	r2, [pc, #228]	@ (80011f8 <fsm_traiter+0x13c>)
+        consigne_pot = e->valeur > 100u ? 100u : e->valeur;
+ 8001112:	2b64      	cmp	r3, #100	@ 0x64
+ 8001114:	bf28      	it	cs
+ 8001116:	2364      	movcs	r3, #100	@ 0x64
+        if (etat == ETAT_MARCHE_AVANT || etat == ETAT_MARCHE_ARRIERE) consigne_pct = consigne_pot;
+ 8001118:	6811      	ldr	r1, [r2, #0]
+        consigne_pot = e->valeur > 100u ? 100u : e->valeur;
+ 800111a:	483f      	ldr	r0, [pc, #252]	@ (8001218 <fsm_traiter+0x15c>)
+        if (etat == ETAT_MARCHE_AVANT || etat == ETAT_MARCHE_ARRIERE) consigne_pct = consigne_pot;
+ 800111c:	2901      	cmp	r1, #1
+        consigne_pot = e->valeur > 100u ? 100u : e->valeur;
+ 800111e:	6003      	str	r3, [r0, #0]
+        if (etat == ETAT_MARCHE_AVANT || etat == ETAT_MARCHE_ARRIERE) consigne_pct = consigne_pot;
+ 8001120:	d002      	beq.n	8001128 <fsm_traiter+0x6c>
+ 8001122:	6812      	ldr	r2, [r2, #0]
+ 8001124:	2a02      	cmp	r2, #2
+ 8001126:	d1f1      	bne.n	800110c <fsm_traiter+0x50>
+ 8001128:	4a37      	ldr	r2, [pc, #220]	@ (8001208 <fsm_traiter+0x14c>)
+ 800112a:	6013      	str	r3, [r2, #0]
+}
+ 800112c:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+        if (estop_flag || button_raw(BTN_ESTOP)) break;
+ 800112e:	4b3b      	ldr	r3, [pc, #236]	@ (800121c <fsm_traiter+0x160>)
+ 8001130:	681b      	ldr	r3, [r3, #0]
+ 8001132:	2b00      	cmp	r3, #0
+ 8001134:	d1ea      	bne.n	800110c <fsm_traiter+0x50>
+ 8001136:	2001      	movs	r0, #1
+ 8001138:	f7ff f87c 	bl	8000234 <button_raw>
+ 800113c:	2800      	cmp	r0, #0
+ 800113e:	d1e5      	bne.n	800110c <fsm_traiter+0x50>
+        if (etat == ETAT_ARRET) {
+ 8001140:	4c2d      	ldr	r4, [pc, #180]	@ (80011f8 <fsm_traiter+0x13c>)
+ 8001142:	6823      	ldr	r3, [r4, #0]
+ 8001144:	2b00      	cmp	r3, #0
+ 8001146:	d149      	bne.n	80011dc <fsm_traiter+0x120>
+            entree(prochain_sens ? ETAT_MARCHE_ARRIERE : ETAT_MARCHE_AVANT);
+ 8001148:	4835      	ldr	r0, [pc, #212]	@ (8001220 <fsm_traiter+0x164>)
+    if (etat != nouveau) compteur_transitions++;
+ 800114a:	6825      	ldr	r5, [r4, #0]
+            entree(prochain_sens ? ETAT_MARCHE_ARRIERE : ETAT_MARCHE_AVANT);
+ 800114c:	6802      	ldr	r2, [r0, #0]
+ 800114e:	2a00      	cmp	r2, #0
+ 8001150:	bf0c      	ite	eq
+ 8001152:	2101      	moveq	r1, #1
+ 8001154:	2102      	movne	r1, #2
+    if (etat != nouveau) compteur_transitions++;
+ 8001156:	42a9      	cmp	r1, r5
+ 8001158:	d047      	beq.n	80011ea <fsm_traiter+0x12e>
+ 800115a:	4e28      	ldr	r6, [pc, #160]	@ (80011fc <fsm_traiter+0x140>)
+    pwm_pct = rampe_compteur = 0u;
+ 800115c:	4d29      	ldr	r5, [pc, #164]	@ (8001204 <fsm_traiter+0x148>)
+ 800115e:	602b      	str	r3, [r5, #0]
+    if (etat != nouveau) compteur_transitions++;
+ 8001160:	6835      	ldr	r5, [r6, #0]
+ 8001162:	3501      	adds	r5, #1
+ 8001164:	6035      	str	r5, [r6, #0]
+    etat = nouveau;
+ 8001166:	6021      	str	r1, [r4, #0]
+    pwm_pct = rampe_compteur = 0u;
+ 8001168:	4c25      	ldr	r4, [pc, #148]	@ (8001200 <fsm_traiter+0x144>)
+ 800116a:	6023      	str	r3, [r4, #0]
+    consigne_pct = (nouveau == ETAT_MARCHE_AVANT || nouveau == ETAT_MARCHE_ARRIERE) ? consigne_pot : 0u;
+ 800116c:	4c2a      	ldr	r4, [pc, #168]	@ (8001218 <fsm_traiter+0x15c>)
+ 800116e:	4b26      	ldr	r3, [pc, #152]	@ (8001208 <fsm_traiter+0x14c>)
+ 8001170:	6824      	ldr	r4, [r4, #0]
+            prochain_sens ^= 1u;
+ 8001172:	f082 0201 	eor.w	r2, r2, #1
+    consigne_pct = (nouveau == ETAT_MARCHE_AVANT || nouveau == ETAT_MARCHE_ARRIERE) ? consigne_pot : 0u;
+ 8001176:	601c      	str	r4, [r3, #0]
+    bips = nouveau == ETAT_MARCHE_ARRIERE ? 2u : 1u;
+ 8001178:	4b26      	ldr	r3, [pc, #152]	@ (8001214 <fsm_traiter+0x158>)
+            prochain_sens ^= 1u;
+ 800117a:	6002      	str	r2, [r0, #0]
+    bips = nouveau == ETAT_MARCHE_ARRIERE ? 2u : 1u;
+ 800117c:	6019      	str	r1, [r3, #0]
+}
+ 800117e:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+        expose.vitesse_rpm_q16 = enc_fronts_vers_rpm_q16(e->valeur);
+ 8001180:	6840      	ldr	r0, [r0, #4]
+ 8001182:	f7ff fb4d 	bl	8000820 <enc_fronts_vers_rpm_q16>
+        expose.sens = sens_mesure;
+ 8001186:	4a27      	ldr	r2, [pc, #156]	@ (8001224 <fsm_traiter+0x168>)
+        expose.vitesse_rpm_q16 = enc_fronts_vers_rpm_q16(e->valeur);
+ 8001188:	4b27      	ldr	r3, [pc, #156]	@ (8001228 <fsm_traiter+0x16c>)
+        expose.sens = sens_mesure;
+ 800118a:	6812      	ldr	r2, [r2, #0]
+        expose.vitesse_rpm_q16 = enc_fronts_vers_rpm_q16(e->valeur);
+ 800118c:	6118      	str	r0, [r3, #16]
+        expose.sens = sens_mesure;
+ 800118e:	605a      	str	r2, [r3, #4]
+}
+ 8001190:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+        if (etat == ETAT_ARRET_URGENCE) {
+ 8001192:	4c19      	ldr	r4, [pc, #100]	@ (80011f8 <fsm_traiter+0x13c>)
+            if (!button_raw(BTN_ESTOP)) {
+ 8001194:	2001      	movs	r0, #1
+        if (etat == ETAT_ARRET_URGENCE) {
+ 8001196:	6823      	ldr	r3, [r4, #0]
+ 8001198:	2b03      	cmp	r3, #3
+ 800119a:	d007      	beq.n	80011ac <fsm_traiter+0xf0>
+        } else { touch_enabled ^= 1u; bips = 1u; }
+ 800119c:	4a23      	ldr	r2, [pc, #140]	@ (800122c <fsm_traiter+0x170>)
+ 800119e:	491d      	ldr	r1, [pc, #116]	@ (8001214 <fsm_traiter+0x158>)
+ 80011a0:	6813      	ldr	r3, [r2, #0]
+ 80011a2:	6008      	str	r0, [r1, #0]
+ 80011a4:	4043      	eors	r3, r0
+ 80011a6:	6013      	str	r3, [r2, #0]
+}
+ 80011a8:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+ 80011aa:	4770      	bx	lr
+            if (!button_raw(BTN_ESTOP)) {
+ 80011ac:	f7ff f842 	bl	8000234 <button_raw>
+ 80011b0:	2800      	cmp	r0, #0
+ 80011b2:	d1ab      	bne.n	800110c <fsm_traiter+0x50>
+                estop_flag = 0u;
+ 80011b4:	4b19      	ldr	r3, [pc, #100]	@ (800121c <fsm_traiter+0x160>)
+ 80011b6:	6018      	str	r0, [r3, #0]
+    if (etat != nouveau) compteur_transitions++;
+ 80011b8:	6823      	ldr	r3, [r4, #0]
+ 80011ba:	b11b      	cbz	r3, 80011c4 <fsm_traiter+0x108>
+ 80011bc:	4a0f      	ldr	r2, [pc, #60]	@ (80011fc <fsm_traiter+0x140>)
+ 80011be:	6813      	ldr	r3, [r2, #0]
+ 80011c0:	3301      	adds	r3, #1
+ 80011c2:	6013      	str	r3, [r2, #0]
+    etat = nouveau;
+ 80011c4:	2300      	movs	r3, #0
+    bips = nouveau == ETAT_MARCHE_ARRIERE ? 2u : 1u;
+ 80011c6:	2601      	movs	r6, #1
+    pwm_pct = rampe_compteur = 0u;
+ 80011c8:	480e      	ldr	r0, [pc, #56]	@ (8001204 <fsm_traiter+0x148>)
+ 80011ca:	490d      	ldr	r1, [pc, #52]	@ (8001200 <fsm_traiter+0x144>)
+    consigne_pct = (nouveau == ETAT_MARCHE_AVANT || nouveau == ETAT_MARCHE_ARRIERE) ? consigne_pot : 0u;
+ 80011cc:	4a0e      	ldr	r2, [pc, #56]	@ (8001208 <fsm_traiter+0x14c>)
+    bips = nouveau == ETAT_MARCHE_ARRIERE ? 2u : 1u;
+ 80011ce:	4d11      	ldr	r5, [pc, #68]	@ (8001214 <fsm_traiter+0x158>)
+    etat = nouveau;
+ 80011d0:	6023      	str	r3, [r4, #0]
+    bips = nouveau == ETAT_MARCHE_ARRIERE ? 2u : 1u;
+ 80011d2:	602e      	str	r6, [r5, #0]
+    pwm_pct = rampe_compteur = 0u;
+ 80011d4:	600b      	str	r3, [r1, #0]
+ 80011d6:	6003      	str	r3, [r0, #0]
+    consigne_pct = (nouveau == ETAT_MARCHE_AVANT || nouveau == ETAT_MARCHE_ARRIERE) ? consigne_pot : 0u;
+ 80011d8:	6013      	str	r3, [r2, #0]
+}
+ 80011da:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+        } else if (etat == ETAT_MARCHE_AVANT || etat == ETAT_MARCHE_ARRIERE) entree(ETAT_ARRET);
+ 80011dc:	6823      	ldr	r3, [r4, #0]
+ 80011de:	2b01      	cmp	r3, #1
+ 80011e0:	d0ea      	beq.n	80011b8 <fsm_traiter+0xfc>
+ 80011e2:	6823      	ldr	r3, [r4, #0]
+ 80011e4:	2b02      	cmp	r3, #2
+ 80011e6:	d0e7      	beq.n	80011b8 <fsm_traiter+0xfc>
+}
+ 80011e8:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+    etat = nouveau;
+ 80011ea:	6021      	str	r1, [r4, #0]
+    pwm_pct = rampe_compteur = 0u;
+ 80011ec:	4c05      	ldr	r4, [pc, #20]	@ (8001204 <fsm_traiter+0x148>)
+ 80011ee:	6023      	str	r3, [r4, #0]
+ 80011f0:	4c03      	ldr	r4, [pc, #12]	@ (8001200 <fsm_traiter+0x144>)
+ 80011f2:	6023      	str	r3, [r4, #0]
+    consigne_pct = (nouveau == ETAT_MARCHE_AVANT || nouveau == ETAT_MARCHE_ARRIERE) ? consigne_pot : 0u;
+ 80011f4:	e7ba      	b.n	800116c <fsm_traiter+0xb0>
+ 80011f6:	bf00      	nop
+ 80011f8:	20000390 	.word	0x20000390
+ 80011fc:	20000388 	.word	0x20000388
+ 8001200:	20000380 	.word	0x20000380
+ 8001204:	20000374 	.word	0x20000374
+ 8001208:	20000384 	.word	0x20000384
+ 800120c:	20000370 	.word	0x20000370
+ 8001210:	2000036c 	.word	0x2000036c
+ 8001214:	20000364 	.word	0x20000364
+ 8001218:	2000037c 	.word	0x2000037c
+ 800121c:	20000074 	.word	0x20000074
+ 8001220:	20000378 	.word	0x20000378
+ 8001224:	20000070 	.word	0x20000070
+ 8001228:	2000034c 	.word	0x2000034c
+ 800122c:	2000038c 	.word	0x2000038c

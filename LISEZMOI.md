@@ -1,95 +1,102 @@
-# CEG 3536 — Laboratoire 1 — Projet de démarrage (automne 2026)
+# CEG3536 - Laboratoire 3 - Arikan / Zuze
 
-Projet STM32CubeIDE en **assembleur ARM** pour la carte **NUCLEO-L552ZE-Q**
-(STM32L552ZET6QU, Cortex-M33), plateforme « Leafy ». Il correspond à l'énoncé
-*Commandes et signalisation du véhicule : RCC/GPIO, DEL, boutons, anti-rebond et
-arrêt d'urgence en assembleur ARM* (version 1.0, 12 septembre 2026).
+Projet C + assembleur intégré au projet Lab 2 local, préparé le 10 novembre 2026.
 
-Le projet **compile sans avertissement et se charge tel quel**. À la séance 0,
-il réalise l'objectif attendu : après réinitialisation, la DEL rouge (PA9) est
-allumée seule (exigence E1). Les autres exigences (E2 à E9) sont à réaliser dans
-les routines marquées **À COMPLÉTER**.
+## Résultat et portée
 
-## 1. Contenu
+Validation sur la plateforme le 10 novembre 2026 :
 
-| Fichier | Rôle | État |
-|---|---|---|
-| `Core/Src/registres.inc` | Adresses, masques et constantes (`.equ`, noms RM0438) : RCC, GPIO, EXTI, NVIC, brochage, niveaux actifs, temporisations | Fourni — **niveaux actifs et PUPDR à confirmer par mesure (T4)** |
-| `Core/Src/main.s` | `SystemInit` (vide, horloge MSI 4 MHz), `main` : `gpio_init`, `estop_init`, `fsm_init`, boucle `fsm_step` + `delay_ms(1)` | Fourni |
-| `Core/Src/gpio.s` | `gpio_init` (RCC_AHB2ENR, MODER, OTYPER, OSPEEDR, PUPDR), `led_set` (BSRR) | Fourni |
-| `Core/Src/buttons.s` | `button_raw` (IDR normalisé « appuyé = 1 »), `button_pressed` (anti-rebond, front), `delay_ms` (boucle calibrée) | `button_raw` et `delay_ms` fournis, **`button_pressed` à compléter (E3)** |
-| `Core/Src/estop.s` | `estop_init` (EXTI_EXTICR1, RTSR1/FTSR1, IMR1, NVIC), `EXTI2_IRQHandler`, `estop_flag` | **`estop_init` à faire, ISR à compléter (E4)** ; effacement de la requête fourni |
-| `Core/Src/fsm.s` | `fsm_init`, `fsm_step`, `fsm_maj_del` (seul point de mise à jour des DEL), variables `etat`, `touch_enabled`, `compteur_transitions` | `fsm_init` fourni, **transitions E2, E5, E6, E7 à compléter** |
-| `Core/Inc/lab1.h` | Prototypes C des routines (réutilisés au laboratoire 3) | Fourni |
-| `Core/Startup/startup_stm32l552zetxq.s` | Vecteurs d'interruption et démarrage, **généré par STM32CubeIDE** (à déclarer comme tel dans le rapport) | Fourni, ne pas modifier |
-| `Core/Src/syscalls.c`, `Core/Src/sysmem.c` | Fichiers de support minimaux **générés par STM32CubeIDE** (évitent les avertissements de l'éditeur de liens) ; aucun code applicatif | Fourni, ne pas modifier |
-| `STM32L552ZETXQ_FLASH.ld` | Script d'édition de liens généré par STM32CubeIDE | Fourni |
-| `Makefile` | Construction et programmation en ligne de commande (facultatif) | Fourni |
-| `JOURNAL.md` | Journal d'équipe et jalon J1 (modèle) | À tenir à chaque séance |
+- STM32CubeIDE final : **0 erreur, 0 avertissement** ; firmwares -O0/-O2 fournis et vérifiés par relecture flash.
+- Paramètres/pile AAPCS et cinq calculs de vitesse vérifiés sur le vrai STM32.
+- File : 12 cas Linux/QEMU, commande q réussie sur cible ; saturation réelle : huit refus.
+- PWM ASM/C : huit cas identiques ; cycles DWT mesurés aux deux optimisations.
+- ADC : 0 / 2053 / 4093 ; DMA estimé à 3072 échantillons/s/voie, à partir de compteurs espacés de 2 s.
+- Moteur : deux sens et rampes enregistrés ; polarité encodeur calibrée. E-Stop depuis 100 %, trames intactes et acquittement séparé par Touch En observés.
+- Télémétrie finale : 150 trames réelles sur 30 s, 5,00 Hz, validation réussie.
+- Température en interne : réponse de 25,3 à 29,4 °C au chauffage par les doigts.
 
-## 2. Ouvrir le projet dans STM32CubeIDE 2.2.0
+**Limites restantes :** pas de thermomètre de référence (précision absolue non validée), comparaison Int/Ext non validée (lectures incohérentes du raccordement externe), délai électrique E-Stop <1 ms non mesuré à la demande de l’utilisateur, essai Windows non exécuté. La photo montre le montage ; les captures de registres ne prouvent pas à elles seules tous les critères visuels et temporels du démarrage. La présence et la démonstration devant l’assistant ne sont pas attestées.
 
-1. Copier le dossier `CEG3536_Lab1_Demarrage` dans votre espace de travail et le
-   renommer `CEG3536_Lab1_<équipe>` (renommer aussi dans *Project > Properties*
-   après l'import, ou laisser CubeIDE le faire avec *Rename*).
-2. *File > Import… > General > Existing Projects into Workspace*, choisir le dossier,
-   cocher le projet, *Finish*.
-3. *Project > Build Project* (marteau). La console doit se terminer sans
-   `warning`. Le fichier `Debug/CEG3536_Lab1_<équipe>.elf` est produit.
-4. Brancher la Nucleo (ST-LINK), *Run > Debug As > STM32 C/C++ Application*.
-   Le débogueur s'arrête sur `main` ; *Resume* (F8) : la DEL rouge s'allume.
-5. Fenêtres utiles : *Window > Show View > SFRs* (registres RCC, GPIOx, EXTI, NVIC),
-   *Expressions* ou *Memory* pour `etat`, `estop_flag`, `touch_enabled`,
-   `compteur_transitions`, `btn_valide`, `btn_compteur`.
+**Deux corrections documentées dans la couche héritée :** MOVS remplacé par MOV.W dans encoder_read pour conserver les drapeaux de SUBS ; ENC_SENS_INVERSE réglé à1 après vérification des deux sens sur la plateforme. Les prototypes et les autres pilotes sont conservés. Les versions originales et le diagnostic sont joints ; présenter ces exceptions à l’assistant.
 
-Le projet est de type « Empty » : pas de HAL, pas de CubeMX. Le préprocesseur C
-est actif sur les fichiers `.s` (option `-x assembler-with-cpp`), ce qui permet
-`#include "registres.inc"` et les expressions comme `(3 << (2 * LED_ROUGE_PIN))`.
+Le dossier `preuves/materiel/` contient la sauvegarde flash antérieure, les journaux réels, une photo de la plateforme, les courbes, les captures et les notes de provenance. Les premières preuves QEMU/synthétiques restent identifiées séparément.
 
-## 3. Construction en ligne de commande (facultatif)
+## Ouvrir et construire
 
-```
-make            # build/CEG3536_Lab1.elf et .bin (STM32CubeCLT 1.21.0)
-make flash      # programme la carte par ST-LINK
+Dans STM32CubeIDE : **File > Import > Existing Projects into Workspace**, sélectionner ce dossier, puis construire `CEG3536_Lab3_Arikan_Zuze` en Debug. Les répertoires CMSIS, `STM32L552xx`, GNU11 et `-Wextra` sont configurés. Seul `Core/` est compilé par l'IDE ; les tests et exemples sont exclus.
+
+Sous Linux avec STM32CubeIDE installé :
+
+```sh
+bash build.sh O0
+bash build.sh O2
 ```
 
-Le `make` de STM32CubeIDE se trouve dans
-`C:\ST\STM32CubeIDE_2.2.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.make.win32_*\tools\bin`.
+Le script recherche la chaîne GNU de STM32CubeIDE sous `/opt/st/`. Pour une autre installation, passer le préfixe de répertoire, terminé par `/` :
 
-## 4. Ce qu'il reste à faire, exigence par exigence
+```sh
+TOOLCHAIN=/chemin/vers/tools/bin/ bash build.sh O0
+```
 
-| Exigence | Où | Quoi |
-|---|---|---|
-| E1 Initialisation | `fsm_init` | Fourni : ARRÊT, rouge seule |
-| E2 Défilement par User | `fsm_step` (étape B) | Transitions ARRÊT → AVANT → ARRÊT → ARRIÈRE → ARRÊT, `compteur_transitions++` |
-| E3 Anti-rebond et front | `button_pressed` | Fenêtre `ANTIREBOND_MS` par comptage d'échantillons ; un appui = un événement |
-| E4 E-Stop par interruption | `estop_init`, `EXTI2_IRQHandler` | EXTICR1/RTSR1 ou FTSR1/IMR1, priorité NVIC 0, ISR : état sûr + drapeau + effacement |
-| E5 Signalisation d'urgence | `fsm_step` (A), `fsm_maj_del` | Clignotement 2 Hz par `clignote_compteur` / `clignote_phase`, User ignoré |
-| E6 Acquittement | `fsm_step` (B) | Touch En validé ET `button_raw(BTN_ESTOP) == 0` → ARRÊT |
-| E7 Touch En hors urgence | `fsm_step` (B), `fsm_maj_del` | `touch_enabled ^= 1`, extinction brève `TOUCH_SIGNAL_MS` |
-| E8 Temporisation | `delay_ms`, `registres.inc` | Calibrer `DELAY_BOUCLES_PAR_MS` à l'oscilloscope et rapporter la valeur |
-| E9 Robustesse | ensemble | Vérifier les invariants avec les essais T10 |
+Ces commandes construisent les fichiers ; elles ne programment pas la carte. L'outil système `/usr/bin/arm-none-eabi-gcc` de l'ordinateur utilisé manquait de sa bibliothèque C ; la chaîne complète fournie avec STM32CubeIDE a été utilisée.
 
-## 5. Points d'attention pour la STM32L5
+## Reproduire les essais
 
-- **EXTICR est dans EXTI, pas dans SYSCFG** (RM0438, section 16) :
-  `EXTI_EXTICR1` à l'offset 0x60 de `EXTI_BASE` (0x4002F400), champ EXTI2 aux
-  bits 18:16, valeur 1 = port B. `RCC_APB2ENR.SYSCFGEN` n'est pas nécessaire.
-- **Deux registres de requête** : `EXTI_RPR1` (front montant) et `EXTI_FPR1`
-  (front descendant), effacés par écriture de 1 (fourni dans l'ISR).
-- **EXTI2_IRQn = 13** : priorité dans l'octet `0xE000E400 + 13`, activation par
-  `NVIC_ISER0` bit 13. 3 bits de priorité utiles (7:5) ; 0x00 = la plus élevée.
-- **TrustZone désactivée (TZEN = 0)** : les périphériques sont aux adresses
-  0x4xxx_xxxx (alias non sécurisé) comme dans les exemples du cours.
-- **AAPCS** : paramètres R0–R3, retour R0 ; préserver R4–R11 modifiés ; sauver LR
-  si la routine appelle ; pile alignée sur 8 octets aux appels publics
-  (`push {r4, lr}` ou `push {r4, r5, r6, lr}`, jamais un nombre impair de mots).
-- **ISR** : le matériel empile R0–R3, R12, LR, PC, xPSR ; une ISR feuille
-  utilise R0–R3 librement et retourne par `bx lr`.
+```sh
+bash tests/run_host.sh
+ARM_GCC=/chemin/vers/arm-none-eabi-gcc QEMU=qemu-system-arm OPT=-O0 bash tests/run_target.sh
+ARM_GCC=/chemin/vers/arm-none-eabi-gcc QEMU=qemu-system-arm OPT=-O2 bash tests/run_target.sh
+arm-none-eabi-gdb -q -batch -x tests/qemu/debugger.gdb preuves/qemu_test-O0.elf
+```
 
-## 6. Mesures à consigner dans le rapport
+`run_host.sh` est un banc Linux : il utilise un mappage mémoire de test pour les registres UART. Le module portable à vérifier sous Windows est `hote/test_evq.c` avec `Core/Src/evq.c` et `Core/Src/evq_test.c` ; exécuter `make` dans `hote/` avec MinGW/MSYS2. Le source de la file est identique sur les hôtes et sur la cible.
 
-Niveaux logiques de PC13, PB2, PB5 relâché/appuyé (T4) → ajuster
-`BTN_x_ACTIF_HAUT` et `BTN_x_PUPDR` dans `registres.inc` ; durée de rebond sur
-PC13 ; fenêtre d'anti-rebond retenue ; période de clignotement (T6) ; délai
-PB2 → PC7/PB7 (T5) ; valeur calibrée de `DELAY_BOUCLES_PAR_MS` (E8).
+Le banc QEMU utilise la machine **MPS2 AN505 Cortex-M33**, qui ne reproduit pas les périphériques STM32L552. Il redirige uniquement l'adresse TIM1 vers de la RAM pour comparer les deux routines PWM. Le fichier assembleur de production n'est pas modifié. `enc_count` est le symbole du pilote conservé, avec une valeur injectée par le banc. Les temps QEMU ne sont pas des mesures DWT sur STM32.
+
+## Commandes série sur carte
+
+Terminal : 115200 bauds, 8N1, sans contrôle de flux.
+
+| Commande | Fonction |
+|---|---|
+| `a` | Brut/mV des voies, tours DMA, pertes de transmission |
+| `t` | 40 événements de test ; file de 32 : huit refus si elle est vide au départ |
+| `q` | Autotest de la file, en ARRÊT ; remet les compteurs de la file à zéro |
+| `b` | Comparaison PWM ASM/C et cycles DWT ASM/C/fsm_etat, en ARRÊT |
+| `z` | Remise à zéro des compteurs de la file, en ARRÊT |
+
+`q` et `b` sont des diagnostics : leurs durées peuvent perturber la cadence pendant leur exécution. Pour le relevé nominal de 30 s, les exécuter avant la capture. `B,ecarts=4294967295` indique un banc refusé ou interrompu par l'urgence, pas un nombre normal d'écarts.
+
+```sh
+python3 hote/telemetrie.py /dev/ttyACM0 --duree 30 --sauver preuves/serie_reelle.csv
+```
+
+Ouvrir le port puis redémarrer la carte pendant la capture afin de recevoir la ligne H. Sur Windows, remplacer le périphérique par le port COM réel. Ne pas remplacer le relevé réel par le fichier synthétique fourni.
+
+## Étalonnage et vérifications restantes
+
+Les constantes `TEMP_MV_REF=1831` et `TEMP_C10_REF=250` sont des valeurs de départ du complément. Les remplacer par le relevé de la commande `a` et celui d'un thermomètre. Le rapport contient la procédure T1-T10 et les calculs attendus ; les résultats matériels y sont explicitement non mesurés.
+
+Le tampon physique comporte 64 paires. Le potentiomètre utilise les 16 dernières, la température les 64 dernières. `acq_t` est opaque et possède deux instances statiques. Aucun champ n'est accessible depuis main/fsm.
+
+## Preuves et versions
+
+- `preuves/index.html` : index des vues de preuves ; `preuves/captures/` : 7 captures PNG et leur HTML.
+- `preuves/*.log` : sorties brutes ; `*_O0.txt` / `*_O2.txt` : désassemblages.
+- `preuves/preservation_lab2.txt` : comparaison des pilotes assembleur avec le Lab 2 retrouvé.
+- `versions/v1/` : acquisition initiale et son essai ; `versions/imperative/` : comparaison à variables globales.
+- Tags Git locaux `acq-v1` / `acq-v2` ; le bundle `historique_lab3.bundle` permet de consulter l'historique : `git clone historique_lab3.bundle lab3_historique`.
+
+Les checkpoints ont été créés durant cette session avec l'auteur **Codex (OpenAI)**. Ils ne représentent pas des contributions humaines ou des séances antérieures. La branche lab3 et les tags de version ont été publiés le 10 novembre 2026 : https://github.com/erudaperu/CEG3536_Lab/tree/lab3.
+
+## Sources et assistance
+
+Énoncé Lab 3 v1.3 et complément fournis ; projet Lab 2 retrouvé dans `Documents/Codex/2026-10-20/g/work/CEG3536_Lab` ; en-têtes CMSIS/ST fournis. Les fichiers assembleur ont été conservés, sauf le correctif minimal et la calibration encodeur décrits ci-dessus. Les documents antérieurs joints dans `references/` restent dans leur état d'origine.
+
+Assistance Codex/OpenAI (famille GPT-6) pour l'implémentation, les essais, les traces et la rédaction. Le rapport décrit l'usage et les limites. Chaque membre doit comprendre et pouvoir modifier les modules avant la démonstration.
+
+## Démonstration et connexion matérielle
+
+Voir GUIDE_DEMONSTRATION.md et rapport/Guide_Demonstration_CEG3536_Lab3.pdf. Journaux authentiques de connexion dans preuves/materiel/. Les anciens journaux à0 V sont conservés comme historique de connexion ; les essais matériels réussis ultérieurs sont dans le même dossier.
+
+Sous Windows avec GCC MinGW/MSYS2 dans PATH, lancer `hote/run_windows.cmd` pour produire `preuves/tests_windows.log`. Ce script est fourni mais n’a pas été exécuté sur Windows pendant cette session. PySerial3.5 a été installé sur le laptop Linux pour rendre la commande série du guide utilisable.

@@ -32,7 +32,7 @@ uint32_t button_pressed(uint32_t id);
 void     delay_ms(uint32_t ms);
 void     estop_init(void);
 void     fsm_init(void);
-void     fsm_step(void);
+/* Obsolete en Lab3 : fsm_step assembleur retiree, voir fsm.h. */
 
 /* Variables partagées (définies en .bss dans les fichiers .s) */
 extern volatile uint32_t etat;

@@ -1,0 +1,20 @@
+[36m[01m      -------------------------------------------------------------------
+[39;49m[0m[36m[01m                        STM32CubeProgrammer v2.23.0                  
+[39;49m[0m[36m[01m      -------------------------------------------------------------------
+
+[39;49m[0m[90mST-LINK SN  : 0672FF555187534867211326
+[39;49m[0m[90mST-LINK FW  : V2J48M35
+[39;49m[0m[90mBoard       : NUCLEO-L552ZE-Q
+[39;49m[0m[90mVoltage     : 3.24V
+[39;49m[0m[90mSWD freq    : 950 KHz
+[39;49m[0m[90mConnect mode: Hot Plug
+[39;49m[0m[90mReset mode  : Software reset
+[39;49m[0m[90mDevice ID   : 0x472
+[39;49m[0m[90mRevision ID : Rev Z
+[39;49m[0m[39;49m[0m[39;49m[0m[39;49mDevice name : STM32L5xx
+[39;49m[0m[39;49mNVM size    : 512 KBytes (default)
+[39;49m[0m[39;49mDevice type : MCU
+[39;49m[0m[39;49mDevice CPU  : Cortex-M33
+[39;49m[0m[39;49mBL Version  : 0x0
+[39;49m[0m[39;49m
+[39;49m[0m[39;49m[0m

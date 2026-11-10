@@ -1,0 +1,210 @@
+
+output/lab3/CEG3536_Lab3_Arikan_Zuze/build/O0/CEG3536_Lab3.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+08001688 <fsm_traiter>:
+    expose = (etat_vehicule_t){0};
+    expose.sens = SENS_IMMOBILE;
+    fsm_sorties();
+}
+void fsm_traiter(const evq_event_t *e)
+{
+ 8001688:	b580      	push	{r7, lr}
+ 800168a:	b082      	sub	sp, #8
+ 800168c:	af00      	add	r7, sp, #0
+ 800168e:	6078      	str	r0, [r7, #4]
+    if (!e) return;
+ 8001690:	687b      	ldr	r3, [r7, #4]
+ 8001692:	2b00      	cmp	r3, #0
+ 8001694:	f000 808c 	beq.w	80017b0 <fsm_traiter+0x128>
+    switch (e->type) {
+ 8001698:	687b      	ldr	r3, [r7, #4]
+ 800169a:	781b      	ldrb	r3, [r3, #0]
+ 800169c:	3b01      	subs	r3, #1
+ 800169e:	2b04      	cmp	r3, #4
+ 80016a0:	f200 8088 	bhi.w	80017b4 <fsm_traiter+0x12c>
+ 80016a4:	a201      	add	r2, pc, #4	@ (adr r2, 80016ac <fsm_traiter+0x24>)
+ 80016a6:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
+ 80016aa:	bf00      	nop
+ 80016ac:	080016e3 	.word	0x080016e3
+ 80016b0:	08001739 	.word	0x08001739
+ 80016b4:	080016c1 	.word	0x080016c1
+ 80016b8:	08001797 	.word	0x08001797
+ 80016bc:	0800176f 	.word	0x0800176f
+    case EV_ESTOP:
+        if (etat != ETAT_ARRET_URGENCE) {
+ 80016c0:	4b41      	ldr	r3, [pc, #260]	@ (80017c8 <fsm_traiter+0x140>)
+ 80016c2:	681b      	ldr	r3, [r3, #0]
+ 80016c4:	2b03      	cmp	r3, #3
+ 80016c6:	d008      	beq.n	80016da <fsm_traiter+0x52>
+            entree(ETAT_ARRET_URGENCE);
+ 80016c8:	2003      	movs	r0, #3
+ 80016ca:	f7ff ff49 	bl	8001560 <entree>
+            clignote_compteur = 0u; clignote_phase = 1u;
+ 80016ce:	4b3f      	ldr	r3, [pc, #252]	@ (80017cc <fsm_traiter+0x144>)
+ 80016d0:	2200      	movs	r2, #0
+ 80016d2:	601a      	str	r2, [r3, #0]
+ 80016d4:	4b3e      	ldr	r3, [pc, #248]	@ (80017d0 <fsm_traiter+0x148>)
+ 80016d6:	2201      	movs	r2, #1
+ 80016d8:	601a      	str	r2, [r3, #0]
+        }
+        bips = 0u;
+ 80016da:	4b3e      	ldr	r3, [pc, #248]	@ (80017d4 <fsm_traiter+0x14c>)
+ 80016dc:	2200      	movs	r2, #0
+ 80016de:	601a      	str	r2, [r3, #0]
+        break;
+ 80016e0:	e06f      	b.n	80017c2 <fsm_traiter+0x13a>
+    case EV_USER:
+        if (estop_flag || button_raw(BTN_ESTOP)) break;
+ 80016e2:	4b3d      	ldr	r3, [pc, #244]	@ (80017d8 <fsm_traiter+0x150>)
+ 80016e4:	681b      	ldr	r3, [r3, #0]
+ 80016e6:	2b00      	cmp	r3, #0
+ 80016e8:	d16b      	bne.n	80017c2 <fsm_traiter+0x13a>
+ 80016ea:	2001      	movs	r0, #1
+ 80016ec:	f7fe fda2 	bl	8000234 <button_raw>
+ 80016f0:	4603      	mov	r3, r0
+ 80016f2:	2b00      	cmp	r3, #0
+ 80016f4:	d165      	bne.n	80017c2 <fsm_traiter+0x13a>
+        if (etat == ETAT_ARRET) {
+ 80016f6:	4b34      	ldr	r3, [pc, #208]	@ (80017c8 <fsm_traiter+0x140>)
+ 80016f8:	681b      	ldr	r3, [r3, #0]
+ 80016fa:	2b00      	cmp	r3, #0
+ 80016fc:	d110      	bne.n	8001720 <fsm_traiter+0x98>
+            entree(prochain_sens ? ETAT_MARCHE_ARRIERE : ETAT_MARCHE_AVANT);
+ 80016fe:	4b37      	ldr	r3, [pc, #220]	@ (80017dc <fsm_traiter+0x154>)
+ 8001700:	681b      	ldr	r3, [r3, #0]
+ 8001702:	2b00      	cmp	r3, #0
+ 8001704:	d001      	beq.n	800170a <fsm_traiter+0x82>
+ 8001706:	2302      	movs	r3, #2
+ 8001708:	e000      	b.n	800170c <fsm_traiter+0x84>
+ 800170a:	2301      	movs	r3, #1
+ 800170c:	4618      	mov	r0, r3
+ 800170e:	f7ff ff27 	bl	8001560 <entree>
+            prochain_sens ^= 1u;
+ 8001712:	4b32      	ldr	r3, [pc, #200]	@ (80017dc <fsm_traiter+0x154>)
+ 8001714:	681b      	ldr	r3, [r3, #0]
+ 8001716:	f083 0301 	eor.w	r3, r3, #1
+ 800171a:	4a30      	ldr	r2, [pc, #192]	@ (80017dc <fsm_traiter+0x154>)
+ 800171c:	6013      	str	r3, [r2, #0]
+        } else if (etat == ETAT_MARCHE_AVANT || etat == ETAT_MARCHE_ARRIERE) entree(ETAT_ARRET);
+        break;
+ 800171e:	e04b      	b.n	80017b8 <fsm_traiter+0x130>
+        } else if (etat == ETAT_MARCHE_AVANT || etat == ETAT_MARCHE_ARRIERE) entree(ETAT_ARRET);
+ 8001720:	4b29      	ldr	r3, [pc, #164]	@ (80017c8 <fsm_traiter+0x140>)
+ 8001722:	681b      	ldr	r3, [r3, #0]
+ 8001724:	2b01      	cmp	r3, #1
+ 8001726:	d003      	beq.n	8001730 <fsm_traiter+0xa8>
+ 8001728:	4b27      	ldr	r3, [pc, #156]	@ (80017c8 <fsm_traiter+0x140>)
+ 800172a:	681b      	ldr	r3, [r3, #0]
+ 800172c:	2b02      	cmp	r3, #2
+ 800172e:	d143      	bne.n	80017b8 <fsm_traiter+0x130>
+ 8001730:	2000      	movs	r0, #0
+ 8001732:	f7ff ff15 	bl	8001560 <entree>
+        break;
+ 8001736:	e03f      	b.n	80017b8 <fsm_traiter+0x130>
+    case EV_TOUCH:
+        if (etat == ETAT_ARRET_URGENCE) {
+ 8001738:	4b23      	ldr	r3, [pc, #140]	@ (80017c8 <fsm_traiter+0x140>)
+ 800173a:	681b      	ldr	r3, [r3, #0]
+ 800173c:	2b03      	cmp	r3, #3
+ 800173e:	d10c      	bne.n	800175a <fsm_traiter+0xd2>
+            if (!button_raw(BTN_ESTOP)) {
+ 8001740:	2001      	movs	r0, #1
+ 8001742:	f7fe fd77 	bl	8000234 <button_raw>
+ 8001746:	4603      	mov	r3, r0
+ 8001748:	2b00      	cmp	r3, #0
+ 800174a:	d137      	bne.n	80017bc <fsm_traiter+0x134>
+                estop_flag = 0u;
+ 800174c:	4b22      	ldr	r3, [pc, #136]	@ (80017d8 <fsm_traiter+0x150>)
+ 800174e:	2200      	movs	r2, #0
+ 8001750:	601a      	str	r2, [r3, #0]
+                entree(ETAT_ARRET);
+ 8001752:	2000      	movs	r0, #0
+ 8001754:	f7ff ff04 	bl	8001560 <entree>
+            }
+        } else { touch_enabled ^= 1u; bips = 1u; }
+        break;
+ 8001758:	e030      	b.n	80017bc <fsm_traiter+0x134>
+        } else { touch_enabled ^= 1u; bips = 1u; }
+ 800175a:	4b21      	ldr	r3, [pc, #132]	@ (80017e0 <fsm_traiter+0x158>)
+ 800175c:	681b      	ldr	r3, [r3, #0]
+ 800175e:	f083 0301 	eor.w	r3, r3, #1
+ 8001762:	4a1f      	ldr	r2, [pc, #124]	@ (80017e0 <fsm_traiter+0x158>)
+ 8001764:	6013      	str	r3, [r2, #0]
+ 8001766:	4b1b      	ldr	r3, [pc, #108]	@ (80017d4 <fsm_traiter+0x14c>)
+ 8001768:	2201      	movs	r2, #1
+ 800176a:	601a      	str	r2, [r3, #0]
+        break;
+ 800176c:	e026      	b.n	80017bc <fsm_traiter+0x134>
+    case EV_CONSIGNE:
+        consigne_pot = e->valeur > 100u ? 100u : e->valeur;
+ 800176e:	687b      	ldr	r3, [r7, #4]
+ 8001770:	685b      	ldr	r3, [r3, #4]
+ 8001772:	2b64      	cmp	r3, #100	@ 0x64
+ 8001774:	bf28      	it	cs
+ 8001776:	2364      	movcs	r3, #100	@ 0x64
+ 8001778:	4a1a      	ldr	r2, [pc, #104]	@ (80017e4 <fsm_traiter+0x15c>)
+ 800177a:	6013      	str	r3, [r2, #0]
+        if (etat == ETAT_MARCHE_AVANT || etat == ETAT_MARCHE_ARRIERE) consigne_pct = consigne_pot;
+ 800177c:	4b12      	ldr	r3, [pc, #72]	@ (80017c8 <fsm_traiter+0x140>)
+ 800177e:	681b      	ldr	r3, [r3, #0]
+ 8001780:	2b01      	cmp	r3, #1
+ 8001782:	d003      	beq.n	800178c <fsm_traiter+0x104>
+ 8001784:	4b10      	ldr	r3, [pc, #64]	@ (80017c8 <fsm_traiter+0x140>)
+ 8001786:	681b      	ldr	r3, [r3, #0]
+ 8001788:	2b02      	cmp	r3, #2
+ 800178a:	d119      	bne.n	80017c0 <fsm_traiter+0x138>
+ 800178c:	4b15      	ldr	r3, [pc, #84]	@ (80017e4 <fsm_traiter+0x15c>)
+ 800178e:	681b      	ldr	r3, [r3, #0]
+ 8001790:	4a15      	ldr	r2, [pc, #84]	@ (80017e8 <fsm_traiter+0x160>)
+ 8001792:	6013      	str	r3, [r2, #0]
+        break;
+ 8001794:	e014      	b.n	80017c0 <fsm_traiter+0x138>
+    case EV_VITESSE:
+        expose.vitesse_rpm_q16 = enc_fronts_vers_rpm_q16(e->valeur);
+ 8001796:	687b      	ldr	r3, [r7, #4]
+ 8001798:	685b      	ldr	r3, [r3, #4]
+ 800179a:	4618      	mov	r0, r3
+ 800179c:	f7ff f842 	bl	8000824 <enc_fronts_vers_rpm_q16>
+ 80017a0:	4603      	mov	r3, r0
+ 80017a2:	4a12      	ldr	r2, [pc, #72]	@ (80017ec <fsm_traiter+0x164>)
+ 80017a4:	6113      	str	r3, [r2, #16]
+        expose.sens = sens_mesure;
+ 80017a6:	4b12      	ldr	r3, [pc, #72]	@ (80017f0 <fsm_traiter+0x168>)
+ 80017a8:	681b      	ldr	r3, [r3, #0]
+ 80017aa:	4a10      	ldr	r2, [pc, #64]	@ (80017ec <fsm_traiter+0x164>)
+ 80017ac:	6053      	str	r3, [r2, #4]
+        break;
+ 80017ae:	e008      	b.n	80017c2 <fsm_traiter+0x13a>
+    if (!e) return;
+ 80017b0:	bf00      	nop
+ 80017b2:	e006      	b.n	80017c2 <fsm_traiter+0x13a>
+    default: break;
+ 80017b4:	bf00      	nop
+ 80017b6:	e004      	b.n	80017c2 <fsm_traiter+0x13a>
+        break;
+ 80017b8:	bf00      	nop
+ 80017ba:	e002      	b.n	80017c2 <fsm_traiter+0x13a>
+        break;
+ 80017bc:	bf00      	nop
+ 80017be:	e000      	b.n	80017c2 <fsm_traiter+0x13a>
+        break;
+ 80017c0:	bf00      	nop
+    }
+}
+ 80017c2:	3708      	adds	r7, #8
+ 80017c4:	46bd      	mov	sp, r7
+ 80017c6:	bd80      	pop	{r7, pc}
+ 80017c8:	2000034c 	.word	0x2000034c
+ 80017cc:	2000036c 	.word	0x2000036c
+ 80017d0:	20000370 	.word	0x20000370
+ 80017d4:	20000378 	.word	0x20000378
+ 80017d8:	20000074 	.word	0x20000074
+ 80017dc:	20000364 	.word	0x20000364
+ 80017e0:	20000350 	.word	0x20000350
+ 80017e4:	20000360 	.word	0x20000360
+ 80017e8:	20000358 	.word	0x20000358
+ 80017ec:	2000037c 	.word	0x2000037c
+ 80017f0:	20000070 	.word	0x20000070
