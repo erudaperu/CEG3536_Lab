@@ -1,0 +1,36 @@
+make: Entering directory '/home/erenarikan/.codex/.chatgpt-projects/g-p-6a8b6ddab12c8191bf5a0182ace3f622/output/lab3/CEG3536_Lab3_Arikan_Zuze/hote'
+cc -std=gnu11 -Wall -Wextra -O0 -g -I../Core/Inc -o test_evq test_evq.c ../Core/Src/evq.c ../Core/Src/evq_test.c
+./test_evq
+evq : capacite 32, sizeof(evq_event_t) = 12, int = 32 bits, long = 64 bits
+  cas 1 : reussi
+  cas 2 : reussi
+  cas 3 : reussi
+  cas 4 : reussi
+  cas 5 : reussi
+  cas 6 : reussi
+  cas 7 : reussi
+  cas 8 : reussi
+  cas 9 : reussi
+  cas 10 : reussi
+  cas 11 : reussi
+  cas 12 : reussi
+12 cas, 0 echec(s) : OK
+make: Leaving directory '/home/erenarikan/.codex/.chatgpt-projects/g-p-6a8b6ddab12c8191bf5a0182ace3f622/output/lab3/CEG3536_Lab3_Arikan_Zuze/hote'
+ACQ: moyennes 16/64, independance, bornes, enroulement, hysteresis OK
+FSM: cycle, rampe, arret sous PWM, urgence/acquittement, Touch, vitesse, interruption injectee et 10000 evenements OK
+TELEM: BRR=8889, rejet atomique, TX sans attente, INT32_MIN, enroulement OK
+TELEM: 150 trames generees par le vrai formateur C (donnees synthetiques)
+VALIDATEUR: cadence, en-tete, minimum de trames, CRLF, rollover, troncature OK
+lignes lues : 152 ; trames T valides : 150 ; autres lignes : 1
+en-tete H : present
+periode (ticks_ms) : moyenne 200.0 ms, min 200, max 200 ; cadence 5.00 Hz (OK)
+  etat               min       1  max       1  dernier       1
+  sens               min       1  max       1  dernier       1
+  consigne_pct       min      50  max      50  dernier      50
+  pwm_pct            min      50  max      50  dernier      50
+  temp_c_x10         min     250  max     250  dernier     250
+  vitesse_rpm_x100   min   24000  max   24000  dernier   24000
+  nb_evenements      min       1  max     150  dernier     150
+  evq_debordements   min       0  max       0  dernier       0
+  vitesse 240.00 .. 240.00 tr/min ; temperature 25.0 .. 25.0 C
+RESULTAT : OK

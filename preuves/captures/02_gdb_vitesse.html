@@ -1,0 +1,24 @@
+<!doctype html><html lang="fr"><meta charset="utf-8"><title>Passage C → assembleur et résultat Q16.16</title>
+<style>*{box-sizing:border-box}body{margin:0;background:#f1f4f8;color:#182334;font:17px Arial,sans-serif}main{padding:34px 38px}.kicker{font-size:13px;letter-spacing:1.5px;color:#486484;font-weight:bold}h1{font-size:28px;margin:10px 0 12px}.scope{padding:12px 15px;background:#e2eaf3;border-left:4px solid #36658a;margin-bottom:18px;line-height:1.4}pre{font:16px/22px 'DejaVu Sans Mono',monospace;color:#eef5ff;background:#101b2a;padding:22px;margin:0;white-space:pre-wrap;overflow-wrap:anywhere;border-radius:5px}footer{font-size:12px;color:#516174;margin-top:13px}</style>
+<main><div class="kicker">CEG3536 · LABORATOIRE 3 · 10 NOVEMBRE 2026</div><h1>Passage C → assembleur et résultat Q16.16</h1><div class="scope">GDB avec CPU Cortex-M33 émulé par QEMU. Aucune mesure sur carte STM32.</div><pre>=== T2 / T3 : entree assembleur vitesse (CPU Cortex-M33 emule) ===
+r0             0x74e               1870
+r1             0x30000084          805306500
+sp             0x30003f98          0x30003f98
+lr             0x1000007b          268435579
+pc             0x10000270          0x10000270 &lt;enc_fronts_vers_rpm_q16&gt;
+$1 = 0
+0x30003f98:     0x00000000      0x00000000      0x00000000      0x00000000
+0x30003fa8:     0x00000000      0x00000000      0x00000000      0x00000000
+$2 = 0x12345678
+Variable volatile partagee enc_count (valeur injectee par le banc) :
+0x300000a4:     1870
+Dump of assembler code for function enc_fronts_vers_rpm_q16:
+=&gt; 0x10000270 &lt;+0&gt;:     f245 2124       movw    r1, #21028      @ 0x5224
+   0x10000274 &lt;+4&gt;:     fb00 f001       mul.w   r0, r0, r1
+   0x10000278 &lt;+8&gt;:     4770            bx      lr
+End of assembler dump.
+0x1000007a in main () at tests/qemu/test_target.c:23
+23              resultats_vitesse[i]=enc_fronts_vers_rpm_q16(fronts[i]);
+
+=== Retour Q16.16 pour 1870 fronts ===
+$3 = 39322360</pre><footer>Capture d'une vue HTML des sorties enregistrées. Extrait de gdb_cortex_m33.log. Les journaux bruts sont fournis dans preuves/.</footer></main></html>

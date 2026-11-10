@@ -1,0 +1,76 @@
+reset () at tests/qemu/startup.s:11
+11	    ldr r0, =_sbss
+Breakpoint 1 at 0x10000270: file Core/Src/vitesse.s, line 13.
+
+Breakpoint 1, enc_fronts_vers_rpm_q16 () at Core/Src/vitesse.s:13
+13	    movw r1, #21028
+
+=== T2 / T3 : entree assembleur vitesse (CPU Cortex-M33 emule) ===
+r0             0x74e               1870
+r1             0x30000084          805306500
+sp             0x30003f98          0x30003f98
+lr             0x1000007b          268435579
+pc             0x10000270          0x10000270 <enc_fronts_vers_rpm_q16>
+$1 = 0
+0x30003f98:	0x00000000	0x00000000	0x00000000	0x00000000
+0x30003fa8:	0x00000000	0x00000000	0x00000000	0x00000000
+$2 = 0x12345678
+Variable volatile partagee enc_count (valeur injectee par le banc) :
+0x300000a4:	1870
+Dump of assembler code for function enc_fronts_vers_rpm_q16:
+=> 0x10000270 <+0>:	f245 2124	movw	r1, #21028	@ 0x5224
+   0x10000274 <+4>:	fb00 f001	mul.w	r0, r0, r1
+   0x10000278 <+8>:	4770    	bx	lr
+End of assembler dump.
+0x1000007a in main () at tests/qemu/test_target.c:23
+23	        resultats_vitesse[i]=enc_fronts_vers_rpm_q16(fronts[i]);
+
+=== Retour Q16.16 pour 1870 fronts ===
+$3 = 39322360
+Breakpoint 2 at 0x10000460: file preuves/motor_qemu_preprocessed.s, line 242.
+
+Breakpoint 2, motor_init () at preuves/motor_qemu_preprocessed.s:242
+242	    cmp r0, #100
+
+=== L3-A : appel C vers motor_set_pwm, TIM1 redirige en RAM ===
+r0             0x4b                75
+r1             0x30000064          805306468
+sp             0x30003f98          0x30003f98
+lr             0x100000e3          268435683
+pc             0x10000460          0x10000460 <motor_set_pwm>
+$4 = 0
+0x30003f98:	0x00000000	0x00000000	0x00000001	0x00000019
+0x30003fa8:	0x00000032	0x0000004b	0x00000063	0x00000064
+Dump of assembler code for function motor_set_pwm:
+=> 0x10000460 <+224>:	2864    	cmp	r0, #100	@ 0x64
+   0x10000462 <+2>:	bf88    	it	hi
+   0x10000464 <+4>:	2064    	movhi	r0, #100	@ 0x64
+   0x10000466 <+6>:	21c8    	movs	r1, #200	@ 0xc8
+   0x10000468 <+8>:	fb00 f001	mul.w	r0, r0, r1
+   0x1000046c <+12>:	2164    	movs	r1, #100	@ 0x64
+   0x1000046e <+14>:	fbb0 f0f1	udiv	r0, r0, r1
+   0x10000472 <+18>:	4a1f    	ldr	r2, [pc, #124]	@ (0x100004f0)
+   0x10000474 <+20>:	6350    	str	r0, [r2, #52]	@ 0x34
+   0x10000476 <+22>:	4770    	bx	lr
+End of assembler dump.
+0x100000e2 in main () at tests/qemu/test_target.c:28
+28	        CCR1_SIM=0u; ret_asm[i]=motor_set_pwm(cas_pwm[i]); ccr_asm[i]=CCR1_SIM;
+$5 = 150
+0x30001034:	150
+Breakpoint 3 at 0x10000024: file tests/qemu/test_target.c, line 15.
+QEMU Cortex-M33: vitesse 5/5, evq 12/12, PWM ASM/C 8/8 OK (TIM1 simule en RAM)
+
+Breakpoint 3, preuve_terminee () at tests/qemu/test_target.c:15
+15	__attribute__((noinline)) void preuve_terminee(void) { __asm volatile("nop"); }
+
+=== Resultats complets CPU et memoire simulee ===
+$6 = {0, 21028, 15728944, 39322360, 1378069980}
+$7 = {0, 2, 50, 100, 150, 198, 200, 200}
+$8 = {0, 2, 50, 100, 150, 198, 200, 200}
+$9 = {0, 2, 50, 100, 150, 198, 200, 200}
+$10 = {0, 2, 50, 100, 150, 198, 200, 200}
+$11 = 0
+$12 = 0
+$13 = 0
+$14 = {1 <repeats 12 times>}
+[Inferior 1 (process 1) exited normally]

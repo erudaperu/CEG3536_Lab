@@ -1,0 +1,32 @@
+
+/home/erenarikan/.codex/.chatgpt-projects/g-p-6a8b6ddab12c8191bf5a0182ace3f622/output/lab3/CEG3536_Lab3_Arikan_Zuze/build/O2/CEG3536_Lab3.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+08000720 <motor_set_pwm>:
+ * d'impulsion tronquée. Retour r0 = valeur écrite dans CCR1.
+ * Registres modifiés : r0-r2 (routine feuille). FOURNIE.                    */
+    .global motor_set_pwm
+    .type   motor_set_pwm, %function
+motor_set_pwm:
+    cmp     r0, #100
+ 8000720:	2864      	cmp	r0, #100	@ 0x64
+    it      hi
+ 8000722:	bf88      	it	hi
+    movhi   r0, #100
+ 8000724:	2064      	movhi	r0, #100	@ 0x64
+    movs    r1, #PWM_PLEINE
+ 8000726:	21c8      	movs	r1, #200	@ 0xc8
+    mul     r0, r0, r1                  /* r0 = pct * (ARR + 1)              */
+ 8000728:	fb00 f001 	mul.w	r0, r0, r1
+    movs    r1, #100
+ 800072c:	2164      	movs	r1, #100	@ 0x64
+    udiv    r0, r0, r1                  /* r0 = CCR1                         */
+ 800072e:	fbb0 f0f1 	udiv	r0, r0, r1
+    ldr     r2, =TIM1_BASE
+ 8000732:	4a1f      	ldr	r2, [pc, #124]	@ (80007b0 <motor_stop_now+0x24>)
+    str     r0, [r2, #TIM_CCR1]
+ 8000734:	6350      	str	r0, [r2, #52]	@ 0x34
+    bx      lr
+ 8000736:	4770      	bx	lr

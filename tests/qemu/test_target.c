@@ -18,6 +18,7 @@ int main(void)
     const uint32_t fronts[] = {0u,1u,748u,1870u,65535u};
     const uint32_t attendu[] = {0u,21028u,15728944u,39322360u,1378069980u};
     preuve_volatile = 0x12345678u;
+    enc_count = 1870; /* variable partagee reelle du pilote, valeur injectee par le banc */
     for (unsigned i=0;i<5;i++) {
         resultats_vitesse[i]=enc_fronts_vers_rpm_q16(fronts[i]);
         if(resultats_vitesse[i]!=attendu[i]) echecs_vitesse++;
