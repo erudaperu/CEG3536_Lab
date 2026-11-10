@@ -59,3 +59,17 @@ Codex (OpenAI, famille GPT-6) a aidé à coder, vérifier, instrumenter et rédi
 ## 10 novembre 2026 - connexion matérielle
 
 ST-LINK/V2.1 0672FF555187534867211326 détecté, NUCLEO-L552ZE-Q et /dev/ttyACM0 présents. CubeProgrammer rapporte 0,00 V puis « Unable to get core ID / No STM32 target found », en HOTPLUG et sous reset. Aucun effacement, chargement ni modification des options. Un aperçu webcam ne montrait pas la plateforme ; il n’est pas conservé dans les livrables. Guide T1-T10 préparé, preuves matérielles toujours ouvertes.
+
+## 10 novembre 2026 - session sur la plateforme, connexion rétablie
+
+La cible est détectée à3,24V. Une sauvegarde complète de512Kio précède les chargements. Les firmwares sont relus et comparés au BIN. L’opérateur manipule les commandes et le capteur ; Codex enregistre le port, utilise GDB, relit les résultats et prépare le rapport. Aucune répartition nominative de rôles ni présence à la démonstration n’est inventée.
+
+Les essais découvrent un défaut hérité : MOVS r2,#0 écrasait les drapeaux avant BEQ/BPL dans encoder_read. Correction d’une instruction en MOV.W ; régression sur STM32 et QEMU à deux optimisations. Deux mouvements physiques révèlent ensuite une polarité inversée ; ENC_SENS_INVERSE=1 est validé sur le firmware final dans les deux sens. Les deux lignes modifiées, les originaux et les résultats sont conservés.
+
+La file, AAPCS, les calculs fixes, le PWM ASM/C, DWT, l’ADC/DMA, les deux sens du moteur et la télémétrie sont vérifiés. Le relevé final -O2 contient150 trames nominales en30s à5Hz. La coupure E-Stop à100 % conserve des trames valides. Un essai isolé distingue relâchement et acquittement par Touch En ; les captures antérieures avec manipulations supplémentaires ne servent pas à cette conclusion.
+
+Chauffage :25,3→29,4°C. Aucun thermomètre disponible d’après l’opérateur, donc pas d’étalonnage absolu. Premier essai Ext : S2 seul, aucun fil, confirmé par l’opérateur ; entrée flottante. Second essai : pont déclaré installé, mais tension~1,0V incohérente, connexion non vérifiée visuellement. Retour normal Int demandé. Les tentatives restent consignées comme non validées, sans ajuster artificiellement la calibration.
+
+La latence électrique <1ms est laissée non mesurée à la demande explicite de l’utilisateur. Windows non exécuté ; lanceur MinGW fourni. Les anciennes captures sans matériel et les simulations sont des étapes historiques, pas des preuves physiques. Une photographie réelle du montage est jointe ; les aperçus caméra ne montrant pas la plateforme ne sont pas conservés dans les livrables.
+
+Clôture : images finales O0/O2 relues et identiques aux BIN. Diagnostics finaux : Q=0, B=0 ; cycles32/50/44 et23/19/22. Retour Int mesuré~1821mV. État finalARRÊT, CCR1=0, STB=0, rouge commandée seule, CFSR/HFSR=0. Le dernier brut potentiomètre était3943 ; l’utilisateur est informé de remettre Speed au minimum avant User. Connexion du débogueur libérée pour la démonstration.

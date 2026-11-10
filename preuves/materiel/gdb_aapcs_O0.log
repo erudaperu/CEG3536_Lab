@@ -1,0 +1,46 @@
+acq_brut (a=0x20000080 <instances>) at Core/Src/acq.c:72
+72	    for (uint32_t i = 0u; i < a->n_moy; ++i) {
+Breakpoint 1 at 0x8000820: file Core/Src/vitesse.s, line 13.
+Note: automatically using hardware breakpoints for read-only addresses.
+
+Breakpoint 1, enc_fronts_vers_rpm_q16 () at Core/Src/vitesse.s:13
+13	    movw r1, #21028
+=== T2 entree vitesse depuis le C - cible STM32 ===
+r0             0x0                 0
+r1             0x0                 0
+sp             0x2002ff78          0x2002ff78
+lr             0x800179d           134223773
+pc             0x8000820           0x8000820 <enc_fronts_vers_rpm_q16>
+$1 = 0
+0x2002ff78:	0x000260fc	0x2002ffa8	0x2002ff98	0x08001d39
+0x2002ff88:	0xffffd8f0	0x00002a94	0x00000789	0x00000000
+0x20000064:	0
+Dump of assembler code for function enc_fronts_vers_rpm_q16:
+=> 0x08000820 <+0>:	f245 2124	movw	r1, #21028	@ 0x5224
+   0x08000824 <+4>:	fb00 f001	mul.w	r0, r0, r1
+   0x08000828 <+8>:	4770    	bx	lr
+End of assembler dump.
+0x0800179c in fsm_traiter (e=0x2002ffa8) at Core/Src/fsm.c:59
+59	        expose.vitesse_rpm_q16 = enc_fronts_vers_rpm_q16(e->valeur);
+=== Retour vitesse ===
+$2 = 0
+Breakpoint 2 at 0x8000720: file Core/Src/motor.s, line 154.
+
+Breakpoint 2, motor_init () at Core/Src/motor.s:154
+154	    cmp     r0, #100
+=== T2 entree PWM depuis le C - moteur en ARRET ===
+r0             0x0                 0
+r1             0x0                 0
+sp             0x2002ff68          0x2002ff68
+lr             0x800192d           134224173
+pc             0x8000720           0x8000720 <motor_set_pwm>
+$3 = 0
+0x2002ff68:	0x00000000	0x06000a1b	0x08002138	0x20000080
+0x2002ff78:	0x000260fc	0x2002ffa8	0x2002ff98	0x08001d4d
+fsm_sorties () at Core/Src/fsm.c:95
+95	        led_set(dels[etat]);
+$4 = 0
+0x40012c34:	0
+=== T3 cinq appels de test sur STM32, arguments injectes ===
+tmp/lab3/board_aapcs.gdb:28: Error in sourced command file:
+'enc_fronts_vers_rpm_q16' has unknown return type; cast the call to its declared return type

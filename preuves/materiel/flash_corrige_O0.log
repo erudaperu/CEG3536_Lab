@@ -1,0 +1,13 @@
+0x080015ca in entree (nouveau=38) at Core/Src/fsm.c:17
+17	}
+STM32 Successfully completed reset operation (System reset)
+Loading section .isr_vector, size 0x1f4 lma 0x8000000
+Loading section .text, size 0x2318 lma 0x80001f4
+Loading section .rodata, size 0x168 lma 0x800250c
+Loading section .init_array, size 0x4 lma 0x8002674
+Loading section .fini_array, size 0x4 lma 0x8002678
+Loading section .data, size 0x20 lma 0x800267c
+Start address 0x08002458, load size 9884
+Transfer rate: 11 KB/sec, 1647 bytes/write.
+STM32 Successfully completed reset operation (System reset)
+[Inferior 1 (Remote target) detached]

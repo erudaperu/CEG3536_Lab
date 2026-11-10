@@ -1,0 +1,27 @@
+<!doctype html><meta charset="utf-8"><style>body{font:20px Arial;padding:35px;background:#eff3f7;color:#183b56}pre{font:17px/24px monospace;background:#142333;color:white;padding:22px;white-space:pre-wrap}footer{font-size:14px}</style><h1>T8 - acquittement explicite par Touch En</h1><p>STM32L552 réel - 10 novembre 2026 - preuve matérielle</p><pre>led_set () at Core/Src/gpio.s:130
+130	    str     r2, [r1, #GPIO_BSRR]
+Breakpoint 1 at 0x800168c: file Core/Src/fsm.c, line 30.
+Note: automatically using hardware breakpoints for read-only addresses.
+
+Breakpoint 1, fsm_traiter (e=0x2002ffa8) at Core/Src/fsm.c:30
+30	    if (!e) return;
+=== Evenement Touch En reel, diagnostic acquittement ===
+$1 = {type = EV_TOUCH, valeur = 0, t_ms = 329897}
+$2 = 3
+$3 = 1
+0x2000003c:	0	0	1
+0x20000048:	0	0	0
+0x42020410:	0x00000030
+0x40012c34:	0x00000000
+0x42021014:	0x00000000
+main () at Core/Src/main.c:136
+136	        while (evq_pop(&amp;e)) {
+$4 = 0
+$5 = 0
+[Inferior 1 (Remote target) detached]
+
+
+Test isole : E-Stop presse puis relache, sans Touch En.
+Etat urgence maintenu jusqu’au nouvel appui Touch En.
+PB2 relache, PB5 actif ; passage etat3/flag1 -&gt; etat0/flag0.
+Aucune remise en marche automatique observee.</pre><footer>Capture d’une vue des sorties authentiques enregistrées : diagnostic_touch.log ; essais_physiques.csv. Journaux bruts conservés.</footer>

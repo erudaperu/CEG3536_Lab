@@ -1,0 +1,40 @@
+<!doctype html><meta charset="utf-8"><style>body{font:20px Arial;padding:35px;background:#eff3f7;color:#183b56}pre{font:17px/24px monospace;background:#142333;color:white;padding:22px;white-space:pre-wrap}footer{font-size:14px}</style><h1>Correction du pilote et régression sur STM32</h1><p>STM32L552 réel - 10 novembre 2026 - preuve matérielle</p><pre>Le pilote Lab 2 utilisait MOVS r2,#0 entre SUBS et BEQ/BPL. MOVS imposait Z=1, donc le sens restait IMMOBILE et une variation négative pouvait rester non convertie en valeur absolue. Correction minimale : MOV.W sans mise à jour des drapeaux. Interface et ISR inchangées. Cette exception à la conservation octet pour octet des pilotes est explicitement documentée ; à présenter à l’assistant. Les captures antérieures restent conservées comme preuve du défaut.
+
+Calibration physique : après correction des drapeaux, état avant1 donnait sens2 (~107 rpm/30 %) et état arrière2 donnait sens1 (~97 rpm/27 %). ENC_SENS_INVERSE passe de0 à1 afin d’aligner le signe de comptage sur la convention de la plateforme. Image finale revérifiée : état1/sens1 en avant (~73 rpm à21 %) ; état2/sens2 en arrière (~129 rpm à36 %).
+
+telem_step () at Core/Src/telem.c:72
+72	{
+=== Regression du sens encodeur sur STM32, entrees injectees, moteur arrete ===
+Note: automatically using hardware breakpoints for read-only addresses.
+$1 = 0
+$2 = 0
+$3 = 748
+$4 = 1
+$5 = 748
+$6 = 2
+Dump of assembler code for function encoder_read:
+   0x0800043e &lt;+48&gt;:	4603    	mov	r3, r0
+   0x08000440 &lt;+2&gt;:	480d    	ldr	r0, [pc, #52]	@ (0x8000478 &lt;encoder_read_sans_pointeur+24&gt;)
+   0x08000442 &lt;+4&gt;:	6801    	ldr	r1, [r0, #0]
+   0x08000444 &lt;+6&gt;:	480d    	ldr	r0, [pc, #52]	@ (0x800047c &lt;encoder_read_sans_pointeur+28&gt;)
+   0x08000446 &lt;+8&gt;:	6802    	ldr	r2, [r0, #0]
+   0x08000448 &lt;+10&gt;:	6001    	str	r1, [r0, #0]
+   0x0800044a &lt;+12&gt;:	1a89    	subs	r1, r1, r2
+   0x0800044c &lt;+14&gt;:	f04f 0200	mov.w	r2, #0
+   0x08000450 &lt;+18&gt;:	d004    	beq.n	0x800045c &lt;encoder_read+30&gt;
+   0x08000452 &lt;+20&gt;:	d502    	bpl.n	0x800045a &lt;encoder_read+28&gt;
+   0x08000454 &lt;+22&gt;:	4249    	negs	r1, r1
+   0x08000456 &lt;+24&gt;:	2202    	movs	r2, #2
+   0x08000458 &lt;+26&gt;:	e000    	b.n	0x800045c &lt;encoder_read+30&gt;
+   0x0800045a &lt;+28&gt;:	2201    	movs	r2, #1
+   0x0800045c &lt;+30&gt;:	b103    	cbz	r3, 0x8000460 &lt;encoder_read+34&gt;
+   0x0800045e &lt;+32&gt;:	601a    	str	r2, [r3, #0]
+   0x08000460 &lt;+34&gt;:	4808    	ldr	r0, [pc, #32]	@ (0x8000484 &lt;encoder_read_sans_pointeur+36&gt;)
+   0x08000462 &lt;+36&gt;:	6002    	str	r2, [r0, #0]
+   0x08000464 &lt;+38&gt;:	4806    	ldr	r0, [pc, #24]	@ (0x8000480 &lt;encoder_read_sans_pointeur+32&gt;)
+   0x08000466 &lt;+40&gt;:	6001    	str	r1, [r0, #0]
+   0x08000468 &lt;+42&gt;:	4608    	mov	r0, r1
+   0x0800046a &lt;+44&gt;:	4770    	bx	lr
+End of assembler dump.
+0xe000ed28:	0x00000000	0x00000000
+[Inferior 1 (Remote target) detached]</pre><footer>Capture d’une vue des sorties authentiques enregistrées : correctif_encodeur.md ; regression_encodeur_corrige.log. Journaux bruts conservés.</footer>

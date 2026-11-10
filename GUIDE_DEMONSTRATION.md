@@ -5,7 +5,7 @@
 ## Avant le passage
 
 1. Poser la plateforme à plat, dégager l'arbre et garder l'interrupteur général accessible. Speed à 0 %. Vérifier E-Stop à faible vitesse avant tout essai à 100 %. Ne modifier aucun branchement sous tension.
-2. Alimenter la cible selon le montage du laboratoire. Le 10 novembre, le ST-LINK USB est reconnu, mais CubeProgrammer indique 0.00 V et « No STM32 target found », y compris sous reset. Vérifier l'alimentation et les cavaliers avec l'assistant selon le guide de la plateforme ; ne pas changer les options de protection ni effacer la carte pour résoudre ce symptôme.
+2. Alimenter la cible selon le montage du laboratoire. Connexion rétablie et vérifiée : ST-LINK à3,24V, STM32L552 identifié. Le firmware final -O2 inclut le correctif des drapeaux encodeur et ENC_SENS_INVERSE=1, calibré sur cette plateforme. La sauvegarde de la flash antérieure est conservée.
 3. Dès que le processeur est accessible, sauvegarder la flash existante, charger et vérifier le firmware -O0. Confirmer que ticks_ms avance et qu'aucune faute processeur n'apparaît avant les essais moteur.
 4. Ouvrir STM32CubeIDE avec le projet, préparer Debug et le terminal /dev/ttyACM0 : 115200 bauds, 8N1, aucun contrôle de flux. Un seul programme ouvre le port à la fois. Préparer aussi les exécutables -O0/-O2, les résultats Linux/Windows et le thermomètre.
 5. Préparer les fenêtres Watch : etat, consigne_pct, pwm_pct, estop_flag, ticks_ms, enc_count, tampon_adc, bench_ret_asm, bench_ret_c, bench_ccr_asm, bench_ccr_c, bench_cycles_asm, bench_cycles_c, bench_cycles_fsm. Un point d'arrêt immobilise le processeur : l'utiliser avec moteur désactivé.
@@ -24,7 +24,7 @@ T4. En ARRÊT, placer Speed en bas, au milieu, en haut ; envoyer a et conserver 
 
 T5. Remettre Speed à 0. Appuyer User : marche avant. Monter progressivement la consigne, observer la rampe de PWM (1 point/10 ms), le moteur et la vitesse. User : arrêt. Speed à 0, User : marche arrière, puis répéter. User : arrêt ; déplacer Speed et montrer PWM et CCR1 à zéro. Observer la stabilité de la consigne près d'une position fixe (hystérésis >2 points et zones mortes aux extrémités). Conserver le journal série ; ne pas prétendre qu'une photo prouve la rotation ou la rampe.
 
-T6. S2 en Int : relever le thermomètre et la tension temp_mv avec a. Mettre TEMP_MV_REF à la tension mesurée et TEMP_C10_REF à dix fois la température de référence, reconstruire et vérifier l'écart ≤2 °C. Tenir le capteur entre deux doigts 30 s, constater une hausse de plusieurs degrés. Couper l'alimentation, câbler le pont J5 OUT-IN, mettre S2 en Ext, réalimenter et comparer après stabilisation : différence ≤1 °C. Photographier les deux configurations et le thermomètre. La préparation de l'étalonnage doit être faite avant le passage.
+T6. Le capteur est le petit composant noir semicirculaire dans la zone Temperature Sensor, près de S2 et J5 (guide p.46). S2 en Int : relever le thermomètre et la tension temp_mv avec a. Mettre TEMP_MV_REF à la tension mesurée et TEMP_C10_REF à dix fois la température de référence, reconstruire et vérifier l'écart ≤2 °C. Tenir le capteur entre deux doigts 30 s, constater une hausse de plusieurs degrés. Couper l'alimentation, câbler le pont J5 OUT-IN, mettre S2 en Ext, réalimenter et comparer après stabilisation : différence ≤1 °C. Photographier les deux configurations et le thermomètre. La préparation de l'étalonnage doit être faite avant le passage.
 
 ## T7 à T10 : robustesse, trames et outils (7 minutes)
 

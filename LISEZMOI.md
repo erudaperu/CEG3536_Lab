@@ -4,15 +4,22 @@ Projet C + assembleur intégré au projet Lab 2 local, préparé le 10 novembre 
 
 ## Résultat et portée
 
-- Projet STM32CubeIDE importé et construit : **0 erreur, 0 avertissement**.
-- Firmware GNU ARM complet fourni à `build/O0/CEG3536_Lab3.elf` et `build/O2/CEG3536_Lab3.elf`, avec les BIN correspondants.
-- File : 12/12 cas sous Linux et QEMU Cortex-M33.
-- Vitesse assembleur : 5/5 cas sous QEMU, aux deux optimisations.
-- PWM assembleur/C : 8/8 cas aux deux optimisations avec le registre TIM1 simulé en RAM.
-- Acquisition, commande, interruption injectée, saturation et formateur : tests Linux réussis.
-- Rapport de 10 pages, 7 pages d'annexes et 2 fiches périphériques dans `rapport/`.
+Validation sur la plateforme le 10 novembre 2026 :
 
-**Mise à jour du 10 novembre : ST-LINK connecté sur /dev/ttyACM0, mais cible à 0,00 V et processeur inaccessible (HOTPLUG et sous reset).** Les mesures ADC/DMA, température, moteur, UART réel, latence E-Stop et cycles DWT restent à réaliser sur la plateforme. Les essais Windows et la démonstration ne sont pas attestés. Le fichier `telemetrie_synthetique.csv` contient des données de test, pas un relevé série.
+- STM32CubeIDE final : **0 erreur, 0 avertissement** ; firmwares -O0/-O2 fournis et vérifiés par relecture flash.
+- Paramètres/pile AAPCS et cinq calculs de vitesse vérifiés sur le vrai STM32.
+- File : 12 cas Linux/QEMU, commande q réussie sur cible ; saturation réelle : huit refus.
+- PWM ASM/C : huit cas identiques ; cycles DWT mesurés aux deux optimisations.
+- ADC : 0 / 2053 / 4093 ; DMA estimé à 3072 échantillons/s/voie, à partir de compteurs espacés de 2 s.
+- Moteur : deux sens et rampes enregistrés ; polarité encodeur calibrée. E-Stop depuis 100 %, trames intactes et acquittement séparé par Touch En observés.
+- Télémétrie finale : 150 trames réelles sur 30 s, 5,00 Hz, validation réussie.
+- Température en interne : réponse de 25,3 à 29,4 °C au chauffage par les doigts.
+
+**Limites restantes :** pas de thermomètre de référence (précision absolue non validée), comparaison Int/Ext non validée (lectures incohérentes du raccordement externe), délai électrique E-Stop <1 ms non mesuré à la demande de l’utilisateur, essai Windows non exécuté. La photo montre le montage ; les captures de registres ne prouvent pas à elles seules tous les critères visuels et temporels du démarrage. La présence et la démonstration devant l’assistant ne sont pas attestées.
+
+**Deux corrections documentées dans la couche héritée :** MOVS remplacé par MOV.W dans encoder_read pour conserver les drapeaux de SUBS ; ENC_SENS_INVERSE réglé à1 après vérification des deux sens sur la plateforme. Les prototypes et les autres pilotes sont conservés. Les versions originales et le diagnostic sont joints ; présenter ces exceptions à l’assistant.
+
+Le dossier `preuves/materiel/` contient la sauvegarde flash antérieure, les journaux réels, une photo de la plateforme, les courbes, les captures et les notes de provenance. Les premières preuves QEMU/synthétiques restent identifiées séparément.
 
 ## Ouvrir et construire
 
@@ -84,10 +91,12 @@ Les checkpoints ont été créés durant cette session avec l'auteur **Codex (Op
 
 ## Sources et assistance
 
-Énoncé Lab 3 v1.3 et complément fournis ; projet Lab 2 retrouvé dans `Documents/Codex/2026-10-20/g/work/CEG3536_Lab` ; en-têtes CMSIS/ST fournis. Les fichiers assembleur bas niveau et leurs constantes ont été conservés octet pour octet. Les documents antérieurs joints dans `references/` restent dans leur état d'origine.
+Énoncé Lab 3 v1.3 et complément fournis ; projet Lab 2 retrouvé dans `Documents/Codex/2026-10-20/g/work/CEG3536_Lab` ; en-têtes CMSIS/ST fournis. Les fichiers assembleur ont été conservés, sauf le correctif minimal et la calibration encodeur décrits ci-dessus. Les documents antérieurs joints dans `references/` restent dans leur état d'origine.
 
 Assistance Codex/OpenAI (famille GPT-6) pour l'implémentation, les essais, les traces et la rédaction. Le rapport décrit l'usage et les limites. Chaque membre doit comprendre et pouvoir modifier les modules avant la démonstration.
 
 ## Démonstration et connexion matérielle
 
-Voir GUIDE_DEMONSTRATION.md et rapport/Guide_Demonstration_CEG3536_Lab3.pdf. Journaux authentiques de connexion dans preuves/materiel/. Aucun chargement ni mesure sur cible n’a été possible lors de cette tentative.
+Voir GUIDE_DEMONSTRATION.md et rapport/Guide_Demonstration_CEG3536_Lab3.pdf. Journaux authentiques de connexion dans preuves/materiel/. Les anciens journaux à0 V sont conservés comme historique de connexion ; les essais matériels réussis ultérieurs sont dans le même dossier.
+
+Sous Windows avec GCC MinGW/MSYS2 dans PATH, lancer `hote/run_windows.cmd` pour produire `preuves/tests_windows.log`. Ce script est fourni mais n’a pas été exécuté sur Windows pendant cette session. PySerial3.5 a été installé sur le laptop Linux pour rendre la commande série du guide utilisable.

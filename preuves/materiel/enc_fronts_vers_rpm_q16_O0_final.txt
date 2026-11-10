@@ -1,0 +1,18 @@
+
+output/lab3/CEG3536_Lab3_Arikan_Zuze/build/O0/CEG3536_Lab3.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+08000824 <enc_fronts_vers_rpm_q16>:
+.align 2
+.global enc_fronts_vers_rpm_q16
+.type enc_fronts_vers_rpm_q16, %function
+.thumb_func
+enc_fronts_vers_rpm_q16:
+    movw r1, #21028
+ 8000824:	f245 2124 	movw	r1, #21028	@ 0x5224
+    mul r0, r0, r1
+ 8000828:	fb00 f001 	mul.w	r0, r0, r1
+    bx lr
+ 800082c:	4770      	bx	lr

@@ -1,0 +1,44 @@
+
+output/lab3/CEG3536_Lab3_Arikan_Zuze/build/O2/CEG3536_Lab3.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+08001498 <fsm_etat>:
+        motor_stop_now(); buzzer_continu = 1u; led_set(LED_ROUGE);
+    }
+    buzzer_step();
+}
+const etat_vehicule_t *fsm_etat(void)
+{
+ 8001498:	b410      	push	{r4}
+    expose.etat = etat; expose.consigne_pct = consigne_pct;
+ 800149a:	4908      	ldr	r1, [pc, #32]	@ (80014bc <fsm_etat+0x24>)
+ 800149c:	4c08      	ldr	r4, [pc, #32]	@ (80014c0 <fsm_etat+0x28>)
+    expose.pwm_pct = pwm_pct; expose.transitions = compteur_transitions;
+ 800149e:	4a09      	ldr	r2, [pc, #36]	@ (80014c4 <fsm_etat+0x2c>)
+ 80014a0:	4b09      	ldr	r3, [pc, #36]	@ (80014c8 <fsm_etat+0x30>)
+    expose.etat = etat; expose.consigne_pct = consigne_pct;
+ 80014a2:	6824      	ldr	r4, [r4, #0]
+ 80014a4:	4809      	ldr	r0, [pc, #36]	@ (80014cc <fsm_etat+0x34>)
+ 80014a6:	6809      	ldr	r1, [r1, #0]
+    expose.pwm_pct = pwm_pct; expose.transitions = compteur_transitions;
+ 80014a8:	6812      	ldr	r2, [r2, #0]
+ 80014aa:	681b      	ldr	r3, [r3, #0]
+    expose.etat = etat; expose.consigne_pct = consigne_pct;
+ 80014ac:	6004      	str	r4, [r0, #0]
+    expose.pwm_pct = pwm_pct; expose.transitions = compteur_transitions;
+ 80014ae:	e9c0 1202 	strd	r1, r2, [r0, #8]
+    return &expose;
+}
+ 80014b2:	f85d 4b04 	ldr.w	r4, [sp], #4
+    expose.pwm_pct = pwm_pct; expose.transitions = compteur_transitions;
+ 80014b6:	6143      	str	r3, [r0, #20]
+}
+ 80014b8:	4770      	bx	lr
+ 80014ba:	bf00      	nop
+ 80014bc:	20000384 	.word	0x20000384
+ 80014c0:	20000390 	.word	0x20000390
+ 80014c4:	20000380 	.word	0x20000380
+ 80014c8:	20000388 	.word	0x20000388
+ 80014cc:	2000034c 	.word	0x2000034c

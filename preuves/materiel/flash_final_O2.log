@@ -1,0 +1,12 @@
+0x08002134 in ?? ()
+STM32 Successfully completed reset operation (System reset)
+Loading section .isr_vector, size 0x1f4 lma 0x8000000
+Loading section .text, size 0x1de0 lma 0x80001f4
+Loading section .rodata, size 0x16c lma 0x8001fd4
+Loading section .init_array, size 0x4 lma 0x8002140
+Loading section .fini_array, size 0x4 lma 0x8002144
+Loading section .data, size 0x20 lma 0x8002148
+Start address 0x08001f20, load size 8552
+Transfer rate: 10 KB/sec, 1425 bytes/write.
+STM32 Successfully completed reset operation (System reset)
+[Inferior 1 (Remote target) detached]

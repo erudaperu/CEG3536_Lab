@@ -1,0 +1,20 @@
+0x08001b40 in telem_step () at Core/Src/telem.c:72
+72	{
+$1 = 2
+$2 = 100
+$3 = 71
+$4 = 0
+$5 = 5
+$6 = 0
+0x2000003c:	0	0	0
+0x20000048:	0	0	0
+0x42020810:	0x00000000
+0x42020410:	0x00000890
+0x42021014:	0x00008000
+0x40012c34:	0x0000008e
+Note: automatically using hardware breakpoints for read-only addresses.
+$7 = 0
+$8 = 0
+$9 = 0
+0xe000ed28:	0x00000000	0x00000000
+[Inferior 1 (Remote target) detached]

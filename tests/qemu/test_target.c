@@ -5,7 +5,7 @@
 #define CCR1_SIM (*(volatile uint32_t *)0x30001034u)
 volatile uint32_t echecs_pwm, ret_asm[8], ret_c[8], ccr_asm[8], ccr_c[8];
 volatile uint32_t resultats_vitesse[5], echecs_vitesse, echecs_evq;
-volatile uint32_t preuve_volatile;
+volatile uint32_t preuve_volatile, echecs_encodeur;
 static void sortie(const char *s)
 {
     register uint32_t r0 __asm("r0") = 4u;
@@ -18,6 +18,13 @@ int main(void)
     const uint32_t fronts[] = {0u,1u,748u,1870u,65535u};
     const uint32_t attendu[] = {0u,21028u,15728944u,39322360u,1378069980u};
     preuve_volatile = 0x12345678u;
+    enc_count = 0;
+    if (encoder_read(0) != 0u || sens_mesure != SENS_IMMOBILE) echecs_encodeur++;
+    enc_count = 748;
+    if (encoder_read(0) != 748u || sens_mesure != SENS_AVANT) echecs_encodeur++;
+    enc_count = 0;
+    if (encoder_read(0) != 748u || sens_mesure != SENS_ARRIERE) echecs_encodeur++;
+
     enc_count = 1870; /* variable partagee reelle du pilote, valeur injectee par le banc */
     for (unsigned i=0;i<5;i++) {
         resultats_vitesse[i]=enc_fronts_vers_rpm_q16(fronts[i]);
@@ -32,7 +39,7 @@ int main(void)
             ccr_asm[i]!=attendu_pwm || ccr_c[i]!=attendu_pwm) echecs_pwm++;
     }
     echecs_evq=evq_autotest();
-    sortie(echecs_evq || echecs_vitesse || echecs_pwm ? "QEMU Cortex-M33: ECHEC\n" : "QEMU Cortex-M33: vitesse 5/5, evq 12/12, PWM ASM/C 8/8 OK (TIM1 simule en RAM)\n");
+    sortie(echecs_evq || echecs_vitesse || echecs_pwm || echecs_encodeur ? "QEMU Cortex-M33: ECHEC\n" : "QEMU Cortex-M33: encodeur signe 3/3, vitesse 5/5, evq 12/12, PWM ASM/C 8/8 OK (TIM1 simule en RAM)\n");
     preuve_terminee();
     register uint32_t r0 __asm("r0") = 0x18u;
     register uint32_t r1 __asm("r1") = 0x20026u;

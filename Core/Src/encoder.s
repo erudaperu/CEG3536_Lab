@@ -170,7 +170,7 @@ encoder_read:
     ldr     r2, [r0]
     str     r1, [r0]
     subs    r1, r1, r2                  /* variation depuis 500 ms */
-    movs    r2, #SENS_IMMOBILE
+    mov.w   r2, #SENS_IMMOBILE  /* conserver NZ de subs pour beq/bpl (correctif materiel Lab3) */
     beq     encoder_read_enregistrer
     bpl     encoder_read_avant
     rsbs    r1, r1, #0
