@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1360" height="960" viewBox="0 0 1360 960" role="img" aria-labelledby="title desc">
+  <title id="title">STM32 motor controller architecture</title>
+  <desc id="desc">Analog inputs flow through ADC and circular DMA into the C acquisition layer. Digital inputs and acquisition events enter a 32-slot queue in the SysTick-paced main loop. The state machine calls assembly motor, GPIO and buzzer drivers. UART telemetry carries state and sensor values to a Python host validator. A separate emergency-stop interrupt calls motor_stop_now directly and latches a flag handled by the state machine, independently of queue capacity. Timing labels describe configured behavior, not measured latency.</desc>
+  <defs>
+    <linearGradient id="back" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c1626"/>
+      <stop offset="1" stop-color="#101c2f"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#182a42"/>
+      <stop offset="1" stop-color="#132238"/>
+    </linearGradient>
+    <marker id="blue-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#69b8ff"/></marker>
+    <marker id="red-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#fb9b88"/></marker>
+    <marker id="teal-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#6dd9c4"/></marker>
+    <style>
+      text{font-family:DejaVu Sans,Arial,sans-serif}
+      .label{font-size:13px;font-weight:700;letter-spacing:2.5px;fill:#9ab0cc}
+      .title{font-size:23px;font-weight:700;fill:#f2f7ff}
+      .body{font-size:17px;fill:#b7c8df}
+      .small{font-size:15px;fill:#9eb5d1}
+      .code{font-family:DejaVu Sans Mono,monospace;font-size:15px;fill:#80c6ff}
+      .box{fill:url(#card);stroke:#30445f;stroke-width:1.5}
+      .flow{fill:none;stroke:#69b8ff;stroke-width:2.5;marker-end:url(#blue-arrow)}
+      .signal{fill:none;stroke:#fb9b88;stroke-width:2.5;marker-end:url(#red-arrow)}
+      .observe{fill:none;stroke:#6dd9c4;stroke-width:2.5;marker-end:url(#teal-arrow)}
+    </style>
+  </defs>
+  <rect width="1360" height="960" rx="24" fill="url(#back)"/>
+  <rect x="1" y="1" width="1358" height="958" rx="23" fill="none" stroke="#30445f"/>
+  <rect x="48" y="48" width="40" height="5" rx="2.5" fill="#6dd9c4"/>
+  <text class="label" x="104" y="57">SYSTEM ARCHITECTURE</text>
+  <text x="48" y="112" font-size="39" font-weight="700" fill="#f5f8ff">From sensor input to controlled motion</text>
+  <text class="body" x="48" y="149">STM32L552 · Cortex-M33 · C application logic + ARM assembly drivers</text>
+  <line x1="48" y1="181" x2="1312" y2="181" stroke="#2b3e58"/>
+
+  <rect x="48" y="223" width="240" height="108" rx="14" fill="#35252e" stroke="#bb776f" stroke-width="1.5"/>
+  <text x="68" y="252" class="label" style="fill:#f6b5a9">PRIORITY PATH</text>
+  <text x="68" y="282" class="title">Emergency stop</text>
+  <text x="68" y="308" class="small" style="fill:#efc2ba">EXTI interrupt + latched flag</text>
+  <path d="M 288 277 H 1150 V 590" class="signal"/>
+  <text x="360" y="259" class="code" style="fill:#f8b5a7">ISR calls motor_stop_now()</text>
+  <circle cx="800" cy="277" r="4" fill="#fb9b88"/>
+  <path d="M 800 281 V 590" class="signal" stroke-dasharray="7 7"/>
+  <rect x="726" y="337" width="148" height="31" rx="8" fill="#101c2f"/>
+  <text x="800" y="358" text-anchor="middle" class="small" style="fill:#f6b5a9">latched condition</text>
+  <text x="990" y="312" class="small" style="fill:#efc2ba">Bypasses the event queue</text>
+
+  <text class="label" x="48" y="393">PHYSICAL INPUTS</text>
+  <text class="label" x="330" y="393">ACQUISITION &amp; EVENTS</text>
+  <text class="label" x="660" y="393">CONTROL</text>
+  <text class="label" x="1000" y="393">OUTPUTS</text>
+
+  <rect x="48" y="423" width="240" height="102" rx="14" class="box"/>
+  <text class="title" x="68" y="459">Analog inputs</text>
+  <text class="body" x="68" y="487">Potentiometer</text>
+  <text class="body" x="68" y="511">Temperature sensor</text>
+  <path d="M 288 474 H 330" class="flow"/>
+
+  <rect x="330" y="423" width="280" height="102" rx="14" class="box"/>
+  <text class="title" x="350" y="459" style="font-size:21px">ADC + circular DMA</text>
+  <text class="body" x="350" y="487">Averages · filtering · scaling</text>
+  <text class="code" x="350" y="511">adc_dma.c · acq.c</text>
+  <path d="M 470 525 V 590" class="flow"/>
+  <text class="small" x="487" y="560">setpoint events</text>
+
+  <rect x="48" y="590" width="240" height="132" rx="14" class="box"/>
+  <text class="title" x="68" y="628">Digital inputs</text>
+  <text class="body" x="68" y="658">User / touch buttons</text>
+  <text class="body" x="68" y="684">Encoder feedback</text>
+  <path d="M 288 656 H 330" class="flow"/>
+
+  <rect x="330" y="590" width="280" height="132" rx="14" class="box"/>
+  <text class="title" x="350" y="628">Main loop + FIFO</text>
+  <text class="body" x="350" y="658">1 ms tick · 32 event slots</text>
+  <text class="small" x="350" y="684">Producer / consumer in main</text>
+  <text class="code" x="350" y="708">main.c · evq.c</text>
+  <path d="M 610 656 H 660" class="flow"/>
+
+  <rect x="660" y="590" width="280" height="132" rx="14" fill="#163347" stroke="#4d9db2" stroke-width="1.5"/>
+  <text class="title" x="680" y="628">State machine</text>
+  <text class="body" x="680" y="658">Stopped · forward · reverse</text>
+  <text class="body" x="680" y="684">E-stop + acknowledgement</text>
+  <text class="code" x="680" y="708">fsm.c</text>
+  <path d="M 940 656 H 1000" class="flow"/>
+
+  <rect x="1000" y="590" width="300" height="132" rx="14" class="box"/>
+  <text class="title" x="1020" y="628">Assembly drivers</text>
+  <text class="body" x="1020" y="658">PWM + direction → motor</text>
+  <text class="body" x="1020" y="684">GPIO → LEDs + buzzer</text>
+  <text class="code" x="1020" y="708">motor.s · gpio.s · buzzer.s</text>
+
+  <path d="M 800 722 V 796" class="observe"/>
+  <text class="small" x="819" y="767" style="fill:#a5ddd2">state snapshot</text>
+
+  <rect x="660" y="796" width="280" height="100" rx="14" fill="#153332" stroke="#3c8c80" stroke-width="1.5"/>
+  <text class="title" x="680" y="833">UART telemetry</text>
+  <text class="body" x="680" y="861" style="font-size:16px">115200 baud · 200 ms period</text>
+  <text class="code" x="680" y="885" style="fill:#8be2d1">telem.c</text>
+  <path d="M 940 846 H 1000" class="observe"/>
+
+  <rect x="1000" y="796" width="300" height="100" rx="14" fill="#153332" stroke="#3c8c80" stroke-width="1.5"/>
+  <text class="title" x="1020" y="833">Python validator</text>
+  <text class="body" x="1020" y="861">Serial capture / file analysis</text>
+  <text class="code" x="1020" y="885" style="fill:#8be2d1">hote/telemetrie.py</text>
+
+  <text x="48" y="827" class="label" style="fill:#6dd9c4">DESIGN NOTES</text>
+  <text x="48" y="856" class="body">Bounded queues · static acquisition objects</text>
+  <text x="48" y="882" class="body">Complete-message telemetry buffering</text>
+  <text x="48" y="929" class="small">Key control and data paths. Timing labels are configured values; electrical response time requires board measurement.</text>
+</svg>
